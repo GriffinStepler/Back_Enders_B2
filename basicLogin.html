@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Build 2 Login Screen</title>
+	<style>
+		* {
+			box-sizing: 		border-box;
+		}
+
+		/* For small screens (phones in portrait)  */
+		@media only screen and (max-width: 500px) {
+			.col-sm-00  {display: 		   none; } 
+			.col-sm-12 	{width: 		   100%; }
+			body 		{/*background-color: black;*/}
+			[class*="col-sm-"] {
+				/* border: 		4px solid black; */
+			}
+			.menu p { display: inline; }
+		}
+
+		/* For medium screens (e.g. landscape phones and portrait tablets) */
+		@media only screen and (min-width: 501px) {
+			.col-md-00  {display: 		   none; } /* note */
+			.col-md-01  {width: 		  8.33%; }
+			.col-md-02  {width: 		 16.66%; }
+			.col-md-03  {width: 		 25.00%; }
+			.col-md-04  {width: 		 33.33%; }
+			.col-md-05  {width: 		 41.66%; }
+			.col-md-06  {width: 		 50.00%; }
+			.col-md-07  {width: 		 58.33%; }
+			.col-md-08  {width: 		 66.66%; }
+			.col-md-09  {width: 		 75.00%; }
+			.col-md-10  {width: 		 83.33%; }
+			.col-md-11  {width: 		 91.66%; }
+			.col-md-12  {width: 		100.00%; }
+			body 		{/*background-color: grey;*/}
+			[class*="col-md-"] {
+				/* border: 		4px solid grey; */
+			}
+		}
+
+		/* For large screens or landscape tablets*/		
+		@media only screen and (min-width: 1024px) {
+			.col-sm-00  {display: 		initial; }
+			.col-md-00  {display: 		initial; }
+			.col-lg-01  {width: 		  8.33%; }
+			.col-lg-02  {width: 		 16.66%; }
+			.col-lg-03  {width: 		 25.00%; }
+			.col-lg-04  {width: 		 33.33%; }
+			.col-lg-05  {width: 		 41.66%; }
+			.col-lg-06  {width: 		 50.00%; }
+			.col-lg-07  {width: 		 58.33%; }
+			.col-lg-08  {width: 		 66.66%; }
+			.col-lg-09  {width: 		 75.00%; }
+			.col-lg-10  {width: 		 83.33%; }
+			.col-lg-11  {width: 		 91.66%; }
+			.col-lg-12  {width: 		100.00%; }
+
+			body 		{/*background-color: white;*/}
+			[class*="col-lg-"] {
+				/* border: 		4px solid white; */
+			}
+		}
+
+		[class*="col-"] {
+			float:              left;
+			border-radius:      10px;
+			padding:            2%;
+		}
+
+		.row::after {
+			content:            "";
+			clear:              both;
+			display:            block;
+		}
+
+		body {
+			font-family:        sans-serif;
+			font-size:          12px;	
+            background-color: peachpuff;
+            
+		}
+
+        #titleBlock{
+            text-align: center;
+            font-size: 3vw;
+        }
+
+        #loginBox{
+            margin: auto;
+            text-align: center;
+            
+        }
+
+        label{
+            font-size: 2vw;
+        }
+
+        input{
+            padding: 5px;
+        }
+
+	</style>
+</head>
+<body>
+
+	<div class="row">
+		<div class="head col-lg-12 col-md-12 col-sm-12" id="titleBlock"><h1>Back_Enders Build 2</h1></div>
+	</div>
+
+    <form class="head col-lg-12 col-md-12 col-sm-12" id="loginBox" method="get" action="http://localhost:8080">
+        <label for="email">Email</label><br>
+        <input id="emailInput" name="userEmail" placeholder="Ex.) JohnDoe@gmail.com" required><br>
+
+        <label for="password">Password</label><br>
+        <input id="passwordInput" name="userPassword" placeholder="Password" required><br>
+
+        <input type="submit" value="Login" id="loginButton"><br>
+        <input type="submit" value="Create Account" id="createAccountButton"></button>
+
+    </form>
+			
+</body>
+</html>
