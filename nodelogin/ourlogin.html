@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build 2 Login Screen</title>
+
+    <link href="./style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+    <div class="row">
+        <div class="head col-lg-12 col-md-12 col-sm-12" id="titleBlock">
+            <h1>Back_Enders Build 2</h1>
+        </div>
+    </div>
+
+    <form class="head col-lg-12 col-md-12 col-sm-12" id="loginBox" method="post" action="/auth">
+        <label for="email">Email</label><br>
+        <input id="emailInput" name="userEmail" placeholder="Ex.) JohnDoe@gmail.com" required><br>
+
+        <label for="username">User Name</label><br>
+        <input id="username" name="username" placeholder="User Name" required><br>
+
+        <label for="password">Password</label><br>
+        <input id="passwordInput" name="userPassword" placeholder="Password" required><br>
+
+        <input type="submit" value="Login" id="loginButton"><br>
+        <input type="submit" value="Create Account" id="createAccountButton"></button>
+
+    </form>
+
+</body>
+
+</html>
