@@ -59,8 +59,7 @@ body {
     color: #ffffff;
 }
 
-.login form input[type="password"],
-.login form input[type="text"] {
+.login form input{
     width: 310px;
     height: 50px;
     border: 1px solid #dee0e4;
@@ -87,8 +86,9 @@ body {
     transition: background-color 0.2s;
 }
 
-a {
+.login a {
     margin-bottom: 10px;
+    text-align: center;
 }
 a:link {
     color:white;
