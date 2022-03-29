@@ -3,13 +3,17 @@ const express = require('express');
 const session = require('express-session');
 const path = require('path');
 
-let connection = {
+let connectionString = {
     host: "107.180.1.16",
     port: "3306",
     database: "sprog20222",
     user: "sprog20222",
     password: "sprog20222",
 };
+
+let connection = mysql.createConnection(connectionString)
+
+
 
 const app = express();
 

@@ -9,21 +9,14 @@ body {
 }
 
 .header {
-    /* text-align: center;
-    font-size: 6vh;
-    color: black;
-    background-color: whitesmoke;
-    margin: auto;
-    height: 10vh;
-    width: 90vw; */
     font-size: 6vh;
     color: white;
     text-align: center;
     height: 10vh;
     width: 60vw;
     margin: auto;
-    /* display: block;
-    position: absolute; */
+    display: block;
+    /* position: absolute; */
     /* margin-left: 20vw;
     margin-right: 20vw;
     margin-top: 1vh;
