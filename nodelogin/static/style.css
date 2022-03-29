@@ -93,3 +93,17 @@ body {
     background-color: #2868c7;
     transition: background-color 0.2s;
 }
+
+a {
+    margin-bottom: 10px;
+}
+a:link {
+    color:white;
+}
+a:visited {
+   color: white;
+  }
+
+a:hover {
+    color: lightblue;
+}
