@@ -48,6 +48,8 @@ app.post('/auth', function(request, response) {
                 // Authenticate the user
                 request.session.loggedin = true;
                 request.session.username = username;
+                request.session.password = password;
+                //request.session.email = email;
                 // Redirect to home page
                 response.redirect('/home');
             } else {
@@ -67,7 +69,7 @@ app.get('/home', function(request, response) {
     if (request.session.loggedin) {
         console.log('successful login by', request.session.username)
         // Output username
-        response.send('Welcome back, ' + request.session.username + '!');
+        response.send('Welcome back, ' + request.session.username + '!' + request.session.password);
     } else {
         // Not logged in
         response.send('Please login to view this page!');
