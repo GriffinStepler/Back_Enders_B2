@@ -36,22 +36,48 @@
 </head>
 <body>
   <div class="container">
-    <h3>Popover Example</h3>
-    <!-- <a href="#" data-toggle="popover" title="Popover Header" 
-    data-content="Some content inside the popover">Toggle popover</a> -->
+      <h3>Popover Example</h3>
+      <!-- <a href="#" data-toggle="popover" title="Popover Header" 
+      data-content="Some content inside the popover">Toggle popover</a> -->
 
-    <button type="button" class="btn btn-secondary" id="button"
-        title="Name" data-container="body" 
-        data-toggle="popover" data-placement="left" 
-        data-content="Phone: 480-000-9999">
-        <i class="fa-solid fa-circle-user" style="font-size: 5em;"></i>
-    </button>
+      <button type="button" class="btn btn-secondary" id="button"
+          data-container="body" 
+          data-toggle="popover" data-placement="left" 
+          data-popover-content="#unique-id">
+          <i class="fa-solid fa-circle-user" style="font-size: 5em;"></i>
+      </button>
+  </div>
+
+  <div id="unique-id" style="display:none;">
+      <div id="popover-heading"></div>
+      <div id="popover-body"></div>
   </div>
 
   <script>
-      $(document).ready(function(){
-        $('[data-toggle="popover"]').popover();   
+      $(function(){
+  
+      $("[data-toggle=popover]").popover({
+          html : true,
+          content: function() {
+              var content = $(this).attr("data-popover-content");
+              return $(content).children("#popover-body").html();
+          },
+          title: function() {
+              var title = $(this).attr("data-popover-content");
+              return $(title).children("#popover-heading").html();
+          }
       });
+  });
+      // Change value for user info 
+      document.getElementById("popover-heading").innerHTML = 'username';
+      document.getElementById("popover-body").innerHTML = 'Name: Kobe Bryant<br>Email: abc@asu.edu<br>';
+
+      //Orginal boostrap function
+      // $(document).ready(function(){
+      //   $('[data-toggle="popover"]').popover();   
+      // });
   </script>
+
+  
 </body>
 </html>
