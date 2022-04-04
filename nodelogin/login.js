@@ -57,11 +57,27 @@ app.post('/auth', function(request, response) {
             }
             response.end();
         });
+        //closes connection to db so node server does not receive any errors and shuts down
+        connection.end(err => {
+            if(err){
+                console.log(`${err.toString()}`)
+            }
+            })
+
     } else {
         response.send('Please enter Username and Password!');
         response.end();
     }
 });
+
+
+//logs current user out when called
+// http://localhost:3000/logOut
+app.get('/logOut', function(request, response) {
+    request.session.loggedin = false;
+    response.redirect('/')
+    console.log('Username : ' + request.session.username + ' Logged out: ')
+})
 
 // http://localhost:3000/home
 app.get('/home', function(request, response) {
@@ -70,6 +86,7 @@ app.get('/home', function(request, response) {
         console.log('successful login by', request.session.username)
         // Output username
         response.send('Welcome back, ' + request.session.username + '!' + request.session.password);
+        console.log(request.session)
     } else {
         // Not logged in
         response.send('Please login to view this page!');
@@ -104,6 +121,12 @@ app.post('/createAuth', function(request, response) {
             } else {
                 response.send('Successfully created new account!!!!')
                 // setTimeout(response.redirect('/'), 3000)
+            }
+            })
+
+        connection.end(err => {
+            if(err){
+                console.log(`${err.toString()}`)
             }
             })
 
