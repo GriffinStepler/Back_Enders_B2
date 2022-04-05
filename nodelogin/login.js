@@ -46,8 +46,16 @@ app.post('/auth', function(request, response) {
             // If the account exists
             if (results.length > 0) {
                 // Authenticate the user
+                console.log(results)
                 request.session.loggedin = true;
                 request.session.username = username;
+                request.session.idNum = results[0].id
+                request.session.firstName = results[0].firstName
+                request.session.lastName = results[0].lastName
+                request.session.department = results[0].department
+                request.session.tierLevel = results[0].tierLevel
+                request.session.imageRef = results[0].imageRef
+                request.session.email = results[0].email
                 // Redirect to home page
                 response.redirect('/home');
             } else {
@@ -67,7 +75,15 @@ app.get('/home', function(request, response) {
     if (request.session.loggedin) {
         console.log('successful login by', request.session.username)
         // Output username
-        response.send('Welcome back, ' + request.session.username + '!');
+        response.send('Welcome back, ' + request.session.username + '!' + 
+        "<br>ID: " + request.session.idNum + 
+        "<br>First Name: " + request.session.firstName + 
+        "<br> Last Name:" + request.session.lastName +
+        "<br> Department: " + request.session.department + 
+        "<br> Tier Level: " + request.session.tierLevel +
+        "<br> Email: " + request.session.email +
+        "<br> Image Path : " + request.session.imageRef + 
+        "<br> <img src='" + request.session.imageRef + "' width='500' height='600'></img>");
     } else {
         // Not logged in
         response.send('Please login to view this page!');
