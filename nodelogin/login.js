@@ -3,6 +3,58 @@ const express = require('express');
 const session = require('express-session');
 const path = require('path');
 
+let html = `
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Popovers</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/f31dd71807.js" crossorigin="anonymous"></script>
+    <style>
+        #button{
+            background-color: transparent;
+            background-repeat: no-repeat;
+            border: none;
+            cursor: pointer;
+            overflow: hidden;
+            outline: none;
+            float:right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Popover Example</h3>
+        <button type="button" class="btn btn-secondary" id="button"
+            data-container="body" 
+            data-toggle="popover" data-placement="left" 
+            data-popover-content="#unique-id">
+            <i class="fa-solid fa-circle-user" style="font-size: 5em;"></i>
+        </button>
+    </div>
+    <div id="unique-id" style="display:none;">
+        <div id="popover-heading"></div>
+        <div id="popover-body"></div>
+    </div>
+    <script>
+        $(function(){
+        $("[data-toggle=popover]").popover({
+            html : true,
+            content: function() {
+                var content = $(this).attr("data-popover-content");
+                return $(content).children("#popover-body").html();
+            },
+            title: function() {
+                var title = $(this).attr("data-popover-content");
+                return $(title).children("#popover-heading").html();
+            }
+        });
+    });
+        document.getElementById("popover-heading").innerHTML = '`;
 let connectionString = {
     host: "107.180.1.16",
     port: "3306",
@@ -75,15 +127,21 @@ app.get('/home', function(request, response) {
     if (request.session.loggedin) {
         console.log('successful login by', request.session.username)
         // Output username
-        response.send('Welcome back, ' + request.session.username + '!' + 
-        "<br>ID: " + request.session.idNum + 
-        "<br>First Name: " + request.session.firstName + 
-        "<br> Last Name:" + request.session.lastName +
-        "<br> Department: " + request.session.department + 
-        "<br> Tier Level: " + request.session.tierLevel +
-        "<br> Email: " + request.session.email +
-        "<br> Image Path : " + request.session.imageRef + 
-        "<br> <img src='" + request.session.imageRef + "' width='500' height='600'></img>");
+        // response.send('Welcome back, ' + request.session.username + '!' + 
+        // "<br>ID: " + request.session.idNum + 
+        // "<br>First Name: " + request.session.firstName + 
+        // "<br> Last Name:" + request.session.lastName +
+        // "<br> Department: " + request.session.department + 
+        // "<br> Tier Level: " + request.session.tierLevel +
+        // "<br> Email: " + request.session.email +
+        // "<br> Image Path : " + request.session.imageRef + 
+        // "<br> <img src='" + request.session.imageRef + "' width='500' height='600'></img>");
+        let header = request.session.username+`';`;
+        let content = `document.getElementById("popover-body").innerHTML = '` + request.session.firstName +` `+request.session.lastName+
+        `<br>`+`Department: `+request.session.department+`<br>Tier Level: `+request.session.tierLevel+`<br> Email: `+request.session.email+
+        `<br> Image Path : `+request.session.imageRef+`';</script></body></html>`;
+        html += header+content;
+        response.send(html);
     } else {
         // Not logged in
         response.send('Please login to view this page!');
