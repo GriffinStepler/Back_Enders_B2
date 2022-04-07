@@ -1,8 +1,8 @@
 id,firstName,lastName,department,tierLevel,imageRef,username,email,password
 0,test,test,,,,test,test,test
-1,Kobe,Bryant,accounting,4,./profilePics/kobe.bryant.png,kobe.bryant,kobe.bryant@gmail.com,1234
-2,Michael,Jordan,accounting,1,./profilePics/michael.jordan.png,michael.jordan,michael.jordan@gmail.com,1234
-3,Miley,Cyrus,accounting,4,./profilePics/miley.cyrus.png,miley.cyrus,miley.cyrus@gmail.com,1234
+1,Kobe,Bryant,accounting,4,profilePics/kobe.bryant.png,kobe.bryant,kobe.bryant@gmail.com,1234
+2,Michael,Jordan,accounting,1,profilePics/michael.jordan.png,michael.jordan,michael.jordan@gmail.com,1234
+3,Miley,Cyrus,accounting,4,profilePics/miley.cyrus.png,miley.cyrus,miley.cyrus@gmail.com,1234
 4,Nelson,Mandela,accounting,4,,nelson.mandela,nelson.mandela@gmail.com,1234
 5,Christopher,Columbus,accounting,3,,christopher.columbus,christopher.columbus@gmail.com,1234
 6,Katy,Perry,accounting,3,,katy.perry,katy.perry@gmail.com,1234
@@ -87,7 +87,7 @@ id,firstName,lastName,department,tierLevel,imageRef,username,email,password
 85,Mickey,Mouse,legal,4,,mickey.mouse,mickey.mouse@gmail.com,1234
 86,Simon,Cowell,legal,1,,simon.cowell,simon.cowell@gmail.com,1234
 87,Ludwig,Beethoven,legal,1,,ludwig.beethoven,ludwig.beethoven@gmail.com,1234
-88,Will,Smith,legal,2,,will.smith,will.smith@gmail.com,1234
+88,Will,Smith,legal,2,profilePics/will.smith.png,will.smith,will.smith@gmail.com,1234
 89,Henry,Ford,legal,4,,henry.ford,henry.ford@gmail.com,1234
 90,Arnold,Schwarzenegger,legal,3,,arnold.schwarzenegger,arnold.schwarzenegger@gmail.com,1234
 91,Abraham,Lincoln,legal,4,,abraham.lincoln,abraham.lincoln@gmail.com,1234
@@ -100,3 +100,4 @@ id,firstName,lastName,department,tierLevel,imageRef,username,email,password
 98,Jessica,Simpson,legal,2,,jessica.simpson,jessica.simpson@gmail.com,1234
 99,Charlie,Chaplin,legal,4,,charlie.chaplin,charlie.chaplin@gmail.com,1234
 100,Mohammad,Ali,legal,3,,mohammad.ali,mohammad.ali@gmail.com,1234
+101,Chris,Rock,legal,2,profilePics/chris.rock.png,chris.rock,chris.rock@gmail.com,1234
