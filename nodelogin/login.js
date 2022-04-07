@@ -135,7 +135,11 @@ app.post('/home', function(request, response) {
                     // Not logged in
                     response.send('Please login to view this page!');
                 }
-                response.end();
+                connection.end(err => {
+                    if(err){
+                        console.log(`${err.toString()}`)
+                    }
+                    })
             } else {
                 response.send('Incorrect Username and/or Password! <br>  <p><a href="/">Login</a> <a href="/create">Create an Account</a></p>');
             }
@@ -205,6 +209,11 @@ app.post('/createAuth', function(request, response) {
                     // setTimeout(response.redirect('/'), 3000)
             }
         })
+        connection.end(err => {
+            if(err){
+                console.log(`${err.toString()}`)
+            }
+            })
 
 
 
