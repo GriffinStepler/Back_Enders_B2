@@ -166,7 +166,8 @@ app.post('/home', function(request, response) {
                     // response.render('pages/home', { header: username, accountInfo: accountInfo })
                 } else {
                     // Not logged in
-                    response.send('Please login to view this page!');
+                    let calInfo = [{month:'No upcoming meetings!'}];
+                    response.render('pages/home', {header: username, accountInfo: accountInfo, calendar: calInfo});
                 }
                 connection.end(err => {
                     if(err){
