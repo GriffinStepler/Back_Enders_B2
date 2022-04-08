@@ -129,8 +129,41 @@ app.post('/home', function(request, response) {
                             linkedIn: request.session.linkedIn
                         }
                         //renders page using ejs directly after auth in order to not send headers twice
+                    
+                    // execute second query to retreive meetings from database
+                    // calQuery separated for ease of use... holy shit this stupid thing is long
+                    let calQuery = `select day, month, year, time 
+                                    from meetings 
+                                    join mentorship on mentorship.mentorshipID=meetings.mentorshipID 
+                                    join accounts on mentorship.mentorID=accounts.id 
+                                    where accounts.username='${username}' 
+                                    union 
+                                    select day, month, year, time
+                                    from meetings 
+                                    join mentorship on mentorship.mentorshipID=meetings.mentorshipID 
+                                    join accounts on mentorship.menteeID=accounts.id 
+                                    where accounts.username='${username}';`;
+                    connection.query(calQuery, function(error, results) {
+                        if (error) throw error;
+                        // if the user has upcoming meetings
+                        if (results.length > 0) {
+                            // create list of meetings
+                            // I literally have no idea if this works
+                            let calInfo = [];
+                            results.forEach(function(element) {
+                                calInfo.push(element);
+                            });
+                            response.render('pages/home', {header: username, accountInfo: accountInfo, calendar: calInfo});
+                        } 
+                        // if the user has no upcoming meetings
+                        else {
+                            response.send('No upcoming meetings');
+                            // TODO: this is a placeholder for lacking meetings; should instead modify dom elements? 
+                        }
+                    });
 
-                    response.render('pages/home', { header: username, accountInfo: accountInfo })
+                    // this is now rendered after the calendar query
+                    // response.render('pages/home', { header: username, accountInfo: accountInfo })
                 } else {
                     // Not logged in
                     response.send('Please login to view this page!');
