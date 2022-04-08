@@ -30,17 +30,6 @@
             <a href="<%=accountInfo.linkedIn %>">LinkedIn</a>
         </p>
     </div>
-    <div class="jumbotron">
-        <!-- include the upcoming meetings contents -->
-        <h3>Your Upcoming Meetings</h3>
-        <ul>
-            <% calendar.forEach(function(meeting) { %>
-                <li>
-                    <%= meeting.month %>/<%= meeting.day %> @ <%= meeting.time %>
-                </li>
-            <% }); %>
-        </ul>
-    </div>
     <div>
         <widgetbot server="955939246085115944" channel="955939246085115951" width="800" height="600"></widgetbot>
         <script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>
