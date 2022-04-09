@@ -179,12 +179,6 @@ app.post('/home', function(request, response) {
             }
             // response.end();
         });
-        //closes connection to db so node server does not receive any errors and shuts down
-        connection.end(err => {
-            if(err){
-                console.log(`${err.toString()}`)
-            }
-            })
 
     } else {
         response.send('Please enter Username and Password!');
@@ -255,14 +249,6 @@ app.post('/createAuth', function(request, response) {
                 console.log(`${err.toString()}`)
             }
             })
-
-        connection.end(err => {
-            if(err){
-                console.log(`${err.toString()}`)
-            }
-            })
-
-
 
         // Execute SQL query that'll select accounts with given username or email
         // connection.query('SELECT * FROM accounts WHERE username = ? OR email = ?', [username, email], function(error, results, fields) {
