@@ -157,8 +157,8 @@ app.post('/home', function(request, response) {
                         } 
                         // if the user has no upcoming meetings
                         else {
-                            response.send('No upcoming meetings');
-                            // TODO: this is a placeholder for lacking meetings; should instead modify dom elements? 
+                            let calInfo = [{month:'No upcoming meetings!'}];
+                            response.render('pages/home', {header: username, accountInfo: accountInfo, calendar: calInfo});
                         }
                     });
 
@@ -166,8 +166,8 @@ app.post('/home', function(request, response) {
                     // response.render('pages/home', { header: username, accountInfo: accountInfo })
                 } else {
                     // Not logged in
-                    let calInfo = [{month:'No upcoming meetings!'}];
-                    response.render('pages/home', {header: username, accountInfo: accountInfo, calendar: calInfo});
+                    let calInfo = 'No upcoming meetings!';
+                    response.send("Log in to view this page!");
                 }
                 connection.end(err => {
                     if(err){
