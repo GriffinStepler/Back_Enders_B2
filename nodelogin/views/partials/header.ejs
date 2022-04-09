@@ -1,0 +1,50 @@
+
+<div class="header">
+    <h1 class="header">Back_Enders_Back_At_It</h1>
+</div>
+
+<button type="button" class="btn btn-secondary" id="button" data-container="body" data-toggle="popover" data-placement="left" data-popover-content="#unique-id">
+    <i class="fa-solid fa-circle-user" style="font-size: 5em;"></i>
+</button>
+
+
+<div id="unique-id" style="display:none;">
+    <div id="popover-heading"></div>
+    <div id="popover-body"></div>
+</div>
+
+<script>
+    $(function() {
+
+        $("[data-toggle=popover]").popover({
+            html: true,
+            content: function() {
+                var content = $(this).attr("data-popover-content");
+                return $(content).children("#popover-body").html();
+            },
+            title: function() {
+                var title = $(this).attr("data-popover-content");
+                return $(title).children("#popover-heading").html();
+            }
+        });
+    });
+    // Change value for user info 
+    document.getElementById("popover-heading").innerHTML = '<%= accountInfo.username %>';
+    document.getElementById("popover-body").innerHTML = 'Name: <%= accountInfo.firstName %> <%= accountInfo.lastName %><br>' +
+        'Email: <%= accountInfo.email %><br>' +
+        'Department: <%= accountInfo.department %><br>' +
+        'Tier Level: <%= accountInfo.tierLevel %><br>' +
+        '<a href="<%=accountInfo.linkedIn %>">LinkedIn</a>'
+
+    //Orginal boostrap function
+    // $(document).ready(function(){
+    //   $('[data-toggle="popover"]').popover();   
+    // });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>
+    new Crate({
+        server: '955939246085115944',
+        channel: '955939246085115951'
+    })
+</script>
