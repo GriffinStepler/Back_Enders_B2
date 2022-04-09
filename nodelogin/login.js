@@ -179,6 +179,13 @@ app.post('/home', function(request, response) {
             }
             // response.end();
         });
+        //closes connection to db so node server does not receive any errors and shuts down
+        connection.end(err => {
+            if(err){
+                console.log(`${err.toString()}`)
+            }
+            })
+
     } else {
         response.send('Please enter Username and Password!');
         response.end();
@@ -243,6 +250,12 @@ app.post('/createAuth', function(request, response) {
                     // setTimeout(response.redirect('/'), 3000)
             }
         })
+        connection.end(err => {
+            if(err){
+                console.log(`${err.toString()}`)
+            }
+            })
+
         connection.end(err => {
             if(err){
                 console.log(`${err.toString()}`)
