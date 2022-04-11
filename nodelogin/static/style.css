@@ -90,9 +90,9 @@ body {
     margin-bottom: 10px;
     text-align: center;
 }
-a:link {
+/* a:link {
     color:white;
-}
+} */
 a:visited {
    color: white;
   }
