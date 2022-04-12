@@ -44,15 +44,18 @@ body {
 .menuBar{
     text-align: center;
     background-color: rgba(0, 0, 0, .7);
-    height: 100px;
+    margin: 1vh;
+    width: 95vw;
+    float: left;
+    margin-left: 2.5vw;
+    padding: auto;
+    border-radius: 15px;
 }
 
 .menuBar ul {
-list-style-type: none;
-overflow: hidden;
-display:inline-table;
-
-
+    list-style-type: none;
+    overflow: hidden;
+    display:inline-table;
 }
 
 .menuBar li {
