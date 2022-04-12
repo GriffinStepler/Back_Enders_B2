@@ -7,71 +7,74 @@
 
 <body>
 
-    <header>
+    <header id="headerBlock">
         <%- include('../partials/header'); %>
     </header>
-    <div class="menuBar">
-        <ul >
-            <li><a href="/home">Home</a></li>
-            <li><a href="/meetings">Meetings</a></li>
-            <li><a href="/mentors">Mentors</a></li>
-            <li><a href="/chat">Chat</a></li>
-        </ul>
-    </div>  
-    <div class="content">
-        <p>Welcome Back <%= accountInfo.firstName %> <%= accountInfo.lastName %>!
-        </p>
-      
-    </div>
-    
-    <div>
-        <widgetbot server="955939246085115944" channel="955939246085115951" width="50%" height="600"></widgetbot>
-        <script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>
-    </div>
-
-    <div class="content" id="todayDiv">
-        <!-- include the upcoming meetings contents -->
-        <h3>Today's Date</h3>
-        <ul>
-            <% if(calendar.length < 1){ %>
-                <li>
-                    No upcoming meetings!
-                </li>
-            <% } else{ %>
-            <% calendar.forEach(function(meeting) { %>
-                <li>
-                    <%= meeting.month %>/<%= meeting.day %> @ <%= meeting.time %>
-                </li>
-            <% }); %>
-            <% } %>
-        </ul>
-    </div>
-    
-    
-    <div class="content" id="calenderDiv">
-        <!-- include the upcoming meetings contents -->
-        <h3>Your Upcoming Meetings</h3>
-        <ul>
-            <% if(calendar.length < 1){ %>
-                <li>
-                    No upcoming meetings!
-                </li>
-            <% } else{ %>
-            <% calendar.forEach(function(meeting) { %>
-                <li>
-                    <%= meeting.month %>/<%= meeting.day %> @ <%= meeting.time %>
-                </li>
-            <% }); %>
-            <% } %>
-        </ul>
-    </div>
-
-    <div class="content" id="currentMentorCaseDiv">
-        <!-- include the upcoming meetings contents -->
-        <h3>You are currently mentoring</h3>
+    <span id="separator">
+        <div class="menuBar">
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/meetings">Meetings</a></li>
+                <li><a href="/mentors">Mentors</a></li>
+                <li><a href="/chat">Chat</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <p>Welcome Back <%= accountInfo.firstName %>
+                    <%= accountInfo.lastName %>!
+            </p>
         
-    </div>
+        </div>
+        
+        <div>
+            <widgetbot server="955939246085115944" channel="955939246085115951" width="50%" height="600"></widgetbot>
+            <script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>
+        </div>
+        
+        <div class="content" id="todayDiv">
+            <!-- include the upcoming meetings contents -->
+            <h3>Today's Date</h3>
+            <ul>
+                <% if(calendar.length < 1){ %>
+                    <li>
+                        No upcoming meetings!
+                    </li>
+                    <% } else{ %>
+                        <% calendar.forEach(function(meeting) { %>
+                            <li>
+                                <%= meeting.month %>/<%= meeting.day %> @ <%= meeting.time %>
+                            </li>
+                            <% }); %>
+                                <% } %>
+            </ul>
+        </div>
+        
+        
+        <div class="content" id="calenderDiv">
+            <!-- include the upcoming meetings contents -->
+            <h3>Your Upcoming Meetings</h3>
+            <ul>
+                <% if(calendar.length < 1){ %>
+                    <li>
+                        No upcoming meetings!
+                    </li>
+                    <% } else{ %>
+                        <% calendar.forEach(function(meeting) { %>
+                            <li>
+                                <%= meeting.month %>/<%= meeting.day %> @ <%= meeting.time %>
+                            </li>
+                            <% }); %>
+                                <% } %>
+            </ul>
+        </div>
+        
+        <div class="content" id="currentMentorCaseDiv">
+            <!-- include the upcoming meetings contents -->
+            <h3>You are currently mentoring</h3>
+        
+        </div>
 
+    </span>
 
     <!-- <div>
         <img src="profilePics\kobe.bryant.png">

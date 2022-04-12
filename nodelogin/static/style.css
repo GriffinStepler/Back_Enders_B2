@@ -189,20 +189,17 @@ background-color: #202835;
     height: 30vh;
 }
 
-/* #calenderDiv{
-    float: left;
-    width: 45%;
-    height: 30vh;
-}
-
-#todayDiv{
-    float: left;
-    width: 45%;
-    height: 30vh;
-} */
-
 widgetbot{
     float: right;
+}
+
+#headerBlock{
+    height:25vh;
+}
+
+#separator{
+    height:75vh;
+
 }
 
 /* .popover-title{
