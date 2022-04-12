@@ -16,14 +16,14 @@
 
 // client.login(process.env.TOKEN);
 
-const {Discord, Client, Intents} = require("discord.js")
-const client = new Client( { intents: [Intents.FLAGS.GUILDS] });
+const {Discord, Client} = require("discord.js")
+const client = new Client( { intents: ['GUILDS', 'DIRECT_MESSAGES', 'GUILD_MESSAGES'], partials: ['MESSAGE', 'CHANNEL'] });
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`)
 })
 
-client.on("message", msg => {
+client.on("messageCreate", msg => {
     console.log(`message received: ${msg.content}`)
     if (msg.content === "ping") {
         msg.reply("pong");
