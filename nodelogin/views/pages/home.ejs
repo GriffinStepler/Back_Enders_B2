@@ -10,27 +10,20 @@
     <header>
         <%- include('../partials/header'); %>
     </header>
-
-
-    <div class="jumbotron">
-        <p>Name:
-            <%= accountInfo.firstName %>
-                <%= accountInfo.lastName %>
+    <div class="menuBar">
+        <ul >
+            <li><a href="/home">Home</a></li>
+            <li><a href="/meetings">Meetings</a></li>
+            <li><a href="/mentors">Mentors</a></li>
+            <li><a href="/chat">Chat</a></li>
+        </ul>
+    </div>  
+    <div class="content">
+        <p>Welcome Back <%= accountInfo.firstName %> <%= accountInfo.lastName %>!
         </p>
-        <p>Department:
-            <%= accountInfo.department %>
-        </p>
-        <p>Email:
-            <%= accountInfo.email %>
-        </p>
-        <p>Tier Level:
-            <%= accountInfo.tierLevel %>
-        </p>
-        <p>LinkedIn:
-            <a href="<%=accountInfo.linkedIn %>">LinkedIn</a>
-        </p>
+      
     </div>
-    <div class="jumbotron">
+    <div class="content" id="calenderDiv">
         <!-- include the upcoming meetings contents -->
         <h3>Your Upcoming Meetings</h3>
         <ul>
@@ -45,9 +38,9 @@
         <widgetbot server="955939246085115944" channel="955939246085115951" width="800" height="600"></widgetbot>
         <script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>
     </div>
-    <div>
+    <!-- <div>
         <img src="profilePics\kobe.bryant.png">
-    </div>
+    </div> -->
 
 </body>
 

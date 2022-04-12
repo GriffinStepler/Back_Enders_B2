@@ -8,6 +8,12 @@ body {
     background-color: #202835!important;
 }
 
+#spacingDiv {
+    width: 20vw;
+    display: block;
+    float: left;
+}
+
 .header {
     font-size: 6vh;
     color: white;
@@ -16,15 +22,67 @@ body {
     width: 60vw;
     margin: auto;
     display: block;
-    /* position: absolute; */
-    /* margin-left: 20vw;
-    margin-right: 20vw;
-    margin-top: 1vh;
-    top: 0vh; */
     background-color: rgba(0, 0, 0, .7);
     z-index: 99;
     border-radius: 15px;
+    float: left;    
 }
+.loginHeader {
+    font-size: 6vh;
+    color: white;
+    text-align: center;
+    height: 10vh;
+    width: 60vw;
+    margin: auto;
+    display: block;
+    background-color: rgba(0, 0, 0, .7);
+    z-index: 99;
+    border-radius: 15px; 
+}
+
+/* menu bar  */
+.menuBar{
+    text-align: center;
+    background-color: rgba(0, 0, 0, .7);
+    height: 100px;
+}
+
+.menuBar ul {
+list-style-type: none;
+overflow: hidden;
+display:inline-table;
+
+
+}
+
+.menuBar li {
+float: left;
+}
+
+.menuBar li a {
+display: block;
+color: white;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+font-size: 20px;
+}
+
+/* Change the link color to #111 (black) on hover */
+.menuBar li a:hover {
+background-color: #202835;
+}
+
+/* content stuff  */
+  .content {
+      text-align: center;
+    background-color: #363e4b;
+    color: white;
+    width: 100%;
+}
+
+
+
 
 .login {
     width: 400px;
@@ -86,20 +144,37 @@ body {
     transition: background-color 0.2s;
 }
 
-.login a {
+#loginLink {
     margin-bottom: 10px;
     text-align: center;
 }
-a:link {
+
+#loginLink:link {
     color:white;
 }
-a:visited {
+#loginLink:visited {
    color: white;
   }
 
-a:hover {
+#loginLink:hover {
     color: lightblue;
 }
+
+
+
+/* popover stuff */
+.popover {
+    float: right;
+}
+
+#popover-body, #popover-heading {
+    visibility: hidden;
+}
+
+#unique-id {
+    line-height: .1;
+}
+
 
 /* .popover-title{
     padding:8px 14px;
