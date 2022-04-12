@@ -6,9 +6,9 @@
 </div>
 <div id="popoverDiv">
     <button type="button" class="btn btn-secondary" id="button" data-container="body" data-toggle="popover" data-placement="left" data-popover-content="#unique-id">
-        <i class="fa-solid fa-circle-user" style="font-size: 5em;"></i>
-        <!-- <img src="" alt=""> -->
-        <!-- <%= accountInfo.imageRef %> -->
+        <!-- <i class="fa-solid fa-circle-user" style="font-size: 5em;"></i> -->
+        <img id=someImage height="75px" width="100px">
+        
     </button>
 
 
@@ -18,6 +18,14 @@
     </div>
 
     <script>
+        function getImagePath(){
+            let path = "profilePics\\<%= accountInfo.username %>.png"
+            return path;
+        }
+        window.onload = function(){
+            document.getElementById('someImage').src=getImagePath();
+        };
+
         $(function() {
 
             $("[data-toggle=popover]").popover({
