@@ -223,6 +223,13 @@ h3 {
     margin-bottom: 2.5vh;
 }
 
+#currentMentorCaseDiv li,
+#calenderDiv li,
+#todayDiv li{
+    text-decoration: none;
+    list-style-type: none;
+}
+
 #widgetBot {
     display: block;
     float: right;
@@ -237,4 +244,9 @@ h3 {
     float: left;
     width: 48.5vw;
     margin-left: 1vw;
+}
+
+#popoverImage {
+    border-radius: 50%;
+    background-color: white;
 }
