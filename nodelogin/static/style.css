@@ -53,6 +53,7 @@ h1, h3{
     margin-left: 2.5vw;
     padding: auto;
     border-radius: 15px;
+    height: 10vh;
 }
 
 .menuBar ul {
@@ -87,6 +88,7 @@ background-color: #202835;
     width: 100%;
     float: none;
     margin: 1vh;
+    height: 5vh;
 }
 
 
@@ -186,7 +188,7 @@ background-color: #202835;
 #currentMentorCaseDiv, #calenderDiv, #todayDiv{
     float: left;
     width: 45%;
-    height: 30vh;
+    height: 20vh;
 }
 
 widgetbot{
