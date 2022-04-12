@@ -10,27 +10,23 @@
     <header id="headerBlock">
         <%- include('../partials/header'); %>
     </header>
+
+    <div class="menuBar">
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/meetings">Meetings</a></li>
+            <li><a href="/mentors">Mentors</a></li>
+            <li><a href="/chat">Chat</a></li>
+        </ul>
+    </div>
+    <div class="content" id="welcomeBack">
+        <p>Welcome Back
+            <%= accountInfo.firstName %>
+                <%= accountInfo.lastName %>!
+        </p>
+
+    </div>
     <span id="separator">
-        <div class="menuBar">
-            <ul>
-                <li><a href="/home">Home</a></li>
-                <li><a href="/meetings">Meetings</a></li>
-                <li><a href="/mentors">Mentors</a></li>
-                <li><a href="/chat">Chat</a></li>
-            </ul>
-        </div>
-        <div class="content">
-            <p>Welcome Back <%= accountInfo.firstName %>
-                    <%= accountInfo.lastName %>!
-            </p>
-        
-        </div>
-        
-        <div>
-            <widgetbot server="955939246085115944" channel="955939246085115951" width="50%" height="60vh"></widgetbot>
-            <script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>
-        </div>
-        
         <div class="content" id="todayDiv">
             <!-- include the upcoming meetings contents -->
             <h3>Today's Date</h3>
@@ -75,6 +71,11 @@
         </div>
 
     </span>
+
+    <div id="widgetBot">
+        <widgetbot server="955939246085115944" channel="955939246085115951" width="100%" height="72.5vh"></widgetbot>
+        <script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>
+    </div>
 
     <!-- <div>
         <img src="profilePics\kobe.bryant.png">

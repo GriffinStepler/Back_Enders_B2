@@ -9,90 +9,118 @@ body {
 }
 
 #spacingDiv {
-    width: 20vw;
+    width: 35vw;
     display: block;
     float: left;
 }
-h1, h3{
+
+h1,
+h3 {
     line-height: normal!important;
-    font-weight:700!important;
+    font-weight: 700!important;
 }
+
+#headerBlock {
+    height: 10vh;
+    margin-top: 1vh;
+}
+
 .header {
     font-size: 6vh;
     color: white;
     text-align: center;
     height: 10vh;
-    width: 60vw;
+    width: 30vw;
     margin: auto;
     display: block;
     background-color: rgba(0, 0, 0, .7);
     z-index: 99;
     border-radius: 15px;
-    float: left;    
+    float: left;
 }
+
 .loginHeader {
     font-size: 6vh;
     color: white;
     text-align: center;
     height: 10vh;
-    width: 60vw;
+    width: 30vw;
     margin: auto;
     display: block;
     background-color: rgba(0, 0, 0, .7);
     z-index: 99;
-    border-radius: 15px; 
+    border-radius: 15px;
 }
 
+
 /* menu bar  */
-.menuBar{
+
+.menuBar {
     text-align: center;
     background-color: rgba(0, 0, 0, .7);
-    margin: 1vh;
-    width: 95vw;
+    width: 98vw;
     float: none;
-    margin-left: 2.5vw;
+    margin-top: 1vh;
+    margin-left: 1vw;
+    margin-right: 1vw;
     padding: auto;
     border-radius: 15px;
-    height: 10vh;
+    height: 5vh;
 }
 
 .menuBar ul {
     list-style-type: none;
     overflow: hidden;
-    display:inline-table;
+    display: inline-table;
 }
 
 .menuBar li {
-float: left;
+    float: left;
 }
 
 .menuBar li a {
-display: block;
-color: white;
-text-align: center;
-padding: 14px 16px;
-text-decoration: none;
-font-size: 20px;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 18px;
 }
+
 
 /* Change the link color to #111 (black) on hover */
+
 .menuBar li a:hover {
-background-color: #202835;
+    background-color: #202835;
 }
 
+
+/* welcome back  */
+
+#welcomeBack {
+    width: 98vw;
+    margin-top: 1vh;
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+
+#welcomeBack p {
+    font-size: 30px;
+    font-weight: bold
+}
+
+
 /* content stuff  */
-  .content {
-      text-align: center;
+
+.content {
+    text-align: center;
     background-color: #363e4b;
     color: white;
     width: 100%;
     float: none;
-    margin: 1vh;
     height: 5vh;
+    border-radius: 15px;
 }
-
-
-
 
 .login {
     width: 400px;
@@ -127,7 +155,7 @@ background-color: #202835;
     color: #ffffff;
 }
 
-.login form input{
+.login form input {
     width: 310px;
     height: 50px;
     border: 1px solid #dee0e4;
@@ -160,24 +188,26 @@ background-color: #202835;
 }
 
 #loginLink:link {
-    color:white;
+    color: white;
 }
+
 #loginLink:visited {
-   color: white;
-  }
+    color: white;
+}
 
 #loginLink:hover {
     color: lightblue;
 }
 
 
-
 /* popover stuff */
+
 .popover {
     float: right;
 }
 
-#popover-body, #popover-heading {
+#popover-body,
+#popover-heading {
     visibility: hidden;
 }
 
@@ -185,33 +215,26 @@ background-color: #202835;
     line-height: .1;
 }
 
-#currentMentorCaseDiv, #calenderDiv, #todayDiv{
-    float: left;
-    width: 45%;
-    height: 20vh;
+#currentMentorCaseDiv,
+#calenderDiv,
+#todayDiv {
+    height: 22.5vh;
+    border-radius: 15px;
+    margin-bottom: 2.5vh;
 }
 
-widgetbot{
+#widgetBot {
+    display: block;
     float: right;
+    width: 48.5vw;
+    margin-top: 2vh;
+    margin-right: 1vw;
+    border-radius: 15px;
 }
 
-#headerBlock{
-    height:25vh;
+#separator {
+    height: 75vh;
+    float: left;
+    width: 48.5vw;
+    margin-left: 1vw;
 }
-
-#separator{
-    height:75vh;
-
-}
-
-/* .popover-title{
-    padding:8px 14px;
-    margin:0;
-    font-size:14px;
-    background-color:#f7f7f7;
-    border-bottom:1px solid #ebebeb;
-    border-radius:5px 5px 0 0;
-}
-.popover-content{
-    padding:9px 14px;
-} */
