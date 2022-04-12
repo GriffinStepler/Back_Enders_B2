@@ -49,7 +49,7 @@ h1, h3{
     background-color: rgba(0, 0, 0, .7);
     margin: 1vh;
     width: 95vw;
-    float: left;
+    float: none;
     margin-left: 2.5vw;
     padding: auto;
     border-radius: 15px;
@@ -85,6 +85,8 @@ background-color: #202835;
     background-color: #363e4b;
     color: white;
     width: 100%;
+    float: none;
+    margin: 1vh;
 }
 
 
@@ -181,6 +183,27 @@ background-color: #202835;
     line-height: .1;
 }
 
+#currentMentorCaseDiv, #calenderDiv, #todayDiv{
+    float: left;
+    width: 45%;
+    height: 30vh;
+}
+
+/* #calenderDiv{
+    float: left;
+    width: 45%;
+    height: 30vh;
+}
+
+#todayDiv{
+    float: left;
+    width: 45%;
+    height: 30vh;
+} */
+
+widgetbot{
+    float: right;
+}
 
 /* .popover-title{
     padding:8px 14px;
