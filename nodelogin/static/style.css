@@ -13,7 +13,10 @@ body {
     display: block;
     float: left;
 }
-
+h1, h3{
+    line-height: normal!important;
+    font-weight:700!important;
+}
 .header {
     font-size: 6vh;
     color: white;
