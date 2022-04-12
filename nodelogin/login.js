@@ -157,7 +157,7 @@ app.post('/home', function(request, response) {
                         } 
                         // if the user has no upcoming meetings
                         else {
-                            let calInfo = [{month:'No upcoming meetings!'}];
+                            let calInfo = [];
                             response.render('pages/home', {header: username, accountInfo: accountInfo, calendar: calInfo});
                         }
                     });

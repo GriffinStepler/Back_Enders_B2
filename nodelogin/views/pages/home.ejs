@@ -27,11 +27,17 @@
         <!-- include the upcoming meetings contents -->
         <h3>Your Upcoming Meetings</h3>
         <ul>
+            <% if(calendar.length < 1){ %>
+                <li>
+                    No upcoming meetings!
+                </li>
+            <% } else{ %>
             <% calendar.forEach(function(meeting) { %>
                 <li>
                     <%= meeting.month %>/<%= meeting.day %> @ <%= meeting.time %>
                 </li>
             <% }); %>
+            <% } %>
         </ul>
     </div>
     <div>
