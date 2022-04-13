@@ -1,22 +1,7 @@
 // this is the code for the bot 
 // this is the token lol OTYyMTA1NzE3MjMyMzg2MTM4.YlCsxg.3r2KcWiaWqqfGcI_KNtWMWcTpzw
 
-// const { Client, Intents } = require('discord.js');
-// const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
-
-// client.on('ready', () => {
-//     console.log(`Logged in as ${client.user.tag}`);
-// });
-
-// client.on('message', msg => {
-//     if (msg.content === 'ping') {
-//         msg.reply('pong');
-//     }
-// });
-
-// client.login(process.env.TOKEN);
-
-const {Discord, Client} = require("discord.js")
+const Client = require("discord.js");
 const client = new Client( { intents: ['GUILDS', 'DIRECT_MESSAGES', 'GUILD_MESSAGES'], partials: ['MESSAGE', 'CHANNEL'] });
 
 client.on("ready", () => {
@@ -30,4 +15,12 @@ client.on("messageCreate", msg => {
     }
 })
 
-client.login('OTYyMTA1NzE3MjMyMzg2MTM4.YlCsxg.3r2KcWiaWqqfGcI_KNtWMWcTpzw');
+client.on('interactionCreate', async interaction => {
+  if (!interaction.isCommand()) return;
+
+  if (interaction.commandName === 'ping') {
+    await interaction.reply('Pong!');
+  }
+});
+
+client.login('OTYyMTA1NzE3MjMyMzg2MTM4.YlCsxg.3r2KcWiaWqqfGcI_KNtWMWcTpzw'); // don't share this token
