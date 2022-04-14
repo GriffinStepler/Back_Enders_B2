@@ -48,7 +48,7 @@ app.post('/home', function(request, response) {
             if (err) {
                 
                 if(err.code == 'ETIMEDOUT') {
-                    console.log("ETIMEOUT handled in /home initial connection, refreshed page and try connection again.")
+                    console.log("ETIMEOUT handled in /home initial connection, recursively called makeConnection() to try connection again.")
                     makeConnection()
                 }
                 else {
@@ -127,7 +127,12 @@ app.post('/home', function(request, response) {
                                         join accounts on mentorship.menteeID=accounts.id 
                                         where accounts.username='${username}';`;
                         connection.query(calQuery, function(error, results) {
-                            if (error) throw error;
+                            if (error) {
+                                throw error
+
+                            } else {
+                                console.log('calInfo successfully queried from db')
+                            }
                             // if the user has upcoming meetings
                             if (results.length > 0) {
                                 // create list of meetings
@@ -140,6 +145,7 @@ app.post('/home', function(request, response) {
                             } 
                             // if the user has no upcoming meetingsx
                             else {
+                                
                                 let calInfo = [];
                                 response.render('pages/home', {header: username, accountInfo: accountInfo, calendar: calInfo});
                             }
@@ -266,4 +272,4 @@ app.post('/createAuth', function(request, response) {
     }
 });
 let server = app.listen(3000);
-server.keepAliveTimeout = 61 * 1000;
+// server.setTimeout(4000)
