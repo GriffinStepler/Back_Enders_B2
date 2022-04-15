@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+
+    <header id="headerBlock">
+        <%- include('../partials/header'); %>
+    </header>
+
+    <div class="menuBar">
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/meetings">Meetings</a></li>
+            <li><a href="/mentors">Mentors</a></li>
+            <li><a href="/chat">Chat</a></li>
+        </ul>
+    </div>
+
+    <div id="widgetBotChatPage">
+        <widgetbot server="955939246085115944" channel="955939246085115951" width="98vw" height="78vh"></widgetbot>
+        <script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>
+    </div>
+</body>
+
+</html>

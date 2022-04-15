@@ -3,6 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const path = require('path');
 const { url } = require('inspector');
+const { futimesSync } = require('fs');
 
 let connectionString = {
     host: "107.180.1.16",
@@ -139,6 +140,7 @@ app.post('/home', function(request, response) {
                                 results.forEach(function(element) {
                                     calInfo.push(element);
                                 });
+                                request.session.calInfo = calInfo
                                 response.render('pages/home', {header: username, accountInfo: accountInfo, calendar: calInfo});
                             } 
                             // if the user has no upcoming meetingsx
@@ -225,5 +227,57 @@ app.post('/createAuth', function(request, response) {
         response.end();
     }
 });
+
+// http://localhost:3000/meetings
+app.get('/meetings', function(request, response) {
+
+    let accountInfo = {
+        username: request.session.username,
+        idNum: request.session.idNum,
+        firstName: request.session.firstName,
+        lastName: request.session.lastName,
+        department: request.session.department,
+        tierLevel: request.session.tierLevel,
+        imageRef: request.session.imageRef,
+        email: request.session.email,
+        linkedIn: request.session.linkedIn}
+
+    response.render('pages/meetings', {header: request.session.username, accountInfo: accountInfo, calendar: request.session.calInfo});
+});
+
+// http://localhost:3000/mentors
+app.get('/mentors', function(request, response) {
+
+    let accountInfo = {
+        username: request.session.username,
+        idNum: request.session.idNum,
+        firstName: request.session.firstName,
+        lastName: request.session.lastName,
+        department: request.session.department,
+        tierLevel: request.session.tierLevel,
+        imageRef: request.session.imageRef,
+        email: request.session.email,
+        linkedIn: request.session.linkedIn}
+
+    response.render('pages/mentors', {header: request.session.username, accountInfo: accountInfo, calendar: request.session.calInfo});
+});
+
+// http://localhost:3000/chat
+app.get('/chat', function(request, response) {
+
+    let accountInfo = {
+        username: request.session.username,
+        idNum: request.session.idNum,
+        firstName: request.session.firstName,
+        lastName: request.session.lastName,
+        department: request.session.department,
+        tierLevel: request.session.tierLevel,
+        imageRef: request.session.imageRef,
+        email: request.session.email,
+        linkedIn: request.session.linkedIn}
+
+    response.render('pages/chat', {header: request.session.username, accountInfo: accountInfo, calendar: request.session.calInfo});
+});
+
 let server = app.listen(3000);
 // server.setTimeout(4000)

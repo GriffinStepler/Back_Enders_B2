@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+
+    <header id="headerBlock">
+        <%- include('../partials/header'); %>
+    </header>
+
+    <div class="menuBar">
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/meetings">Meetings</a></li>
+            <li><a href="/mentors">Mentors</a></li>
+            <li><a href="/chat">Chat</a></li>
+        </ul>
+    </div>
+
+    <div class="content" id="openMentorTable">
+        <h3 id="openMentorTableHeader">Mentors Available</h3>
+        <table>
+            <tr>
+                <th>Mentor Name</th>
+            </tr>
+        </table>
+    </div>
+
+    <div class="content" id="currentMentorShips">
+        <h3 id="currentMentorShipsHeader">Mentor/Mentee Pairs</h3>
+        <table>
+            <tr>
+                <th>Mentor</th>
+                <th>Mentee</th>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

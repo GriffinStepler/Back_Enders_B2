@@ -239,6 +239,13 @@ h3 {
     border-radius: 15px;
 }
 
+#widgetBotChatPage {
+    margin-top: 2vh;
+    margin-right: 1vw;
+    margin-left: 1vw;
+    border-radius: 15px;
+}
+
 #separator {
     height: 75vh;
     float: left;

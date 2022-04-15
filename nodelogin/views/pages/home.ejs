@@ -5,6 +5,17 @@
     <%- include('../partials/head'); %>
 </head>
 
+<script>
+    // gets date and sets as a variable and heading for todayDiv
+    function getDate(dateVar) {        
+        var today = new Date();
+        var date = (today.getMonth()+1) + '/' + today.getDate() + '/' + today.getFullYear();
+        console.log("Date: ", date)
+        dateString = "Today's Date: " + date
+        document.getElementById(dateVar).innerHTML = dateString
+        return date
+}
+</script>
 <body>
 
     <header id="headerBlock">
@@ -26,10 +37,14 @@
         </p>
 
     </div>
+
     <span id="separator">
         <div class="content" id="todayDiv">
             <!-- include the upcoming meetings contents -->
-            <h3>Today's Date</h3>
+            <h3 id="dateId"></h3>
+            <script>
+                getDate("dateId")
+            </script>
             <ul>
                 <% if(calendar.length < 1){ %>
                     <li>
@@ -80,6 +95,8 @@
     <!-- <div>
         <img src="profilePics\kobe.bryant.png">
     </div> -->
+
+
 
 </body>
 

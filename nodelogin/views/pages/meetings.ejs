@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<script>
+    // gets date and sets as a variable and heading for todayDiv
+    function getDate(dateVar) {        
+        var today = new Date();
+        var date = (today.getMonth()+1) + '/' + today.getDate() + '/' + today.getFullYear();
+        console.log("Date: ", date)
+        dateString = "Today's Date: " + date
+        if (dateVar){
+            document.getElementById(dateVar).innerHTML = dateString
+            }
+        return date
+}
+</script>
+<body>
+
+    <header id="headerBlock">
+        <%- include('../partials/header'); %>
+    </header>
+
+    <div class="menuBar">
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/meetings">Meetings</a></li>
+            <li><a href="/mentors">Mentors</a></li>
+            <li><a href="/chat">Chat</a></li>
+        </ul>
+    </div>
+
+    <div class="content" id="bigCalenderDiv">
+        <h3 id="todaysDate"></h3>
+        <p>BIG CALENDER SHIT</p>
+        <p>BADA BING BADA BOOM</p>
+    </div>
+    <script>
+        getDate("todaysDate")
+    </script>
+</body>
+
+</html>
