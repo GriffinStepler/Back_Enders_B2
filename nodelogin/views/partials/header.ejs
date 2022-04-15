@@ -6,7 +6,7 @@
 </div>
 <div id="popoverDiv">
     <button type="button" class="btn btn-secondary" id="button" data-container="body" data-toggle="popover" data-placement="left" data-popover-content="#unique-id">
-        <!-- <i class="fa-solid fa-circle-user" style="font-size: 5em;"></i> -->
+        <i id ="deafultIcon" style="font-size: 5em; color:white;"></i>
         <img id="popoverImage" height="75px" width="75px">
         
     </button>
@@ -23,7 +23,18 @@
             return path;
         }
         window.onload = function(){
-            document.getElementById('popoverImage').src=getImagePath();
+            if('<%= accountInfo.username %>'!== 'chris.rock' && '<%= accountInfo.username %>'!== 'kobe.bryant' && 
+            '<%= accountInfo.username %>'!== 'michael.jordan' && '<%= accountInfo.username %>'!== 'miley.cyrus' &&
+            '<%= accountInfo.username %>'!== 'will.smith'){
+                // console.log('No image');
+                document.getElementById("popoverImage").remove();
+                document.getElementById("deafultIcon").setAttribute("class", "fa-solid fa-circle-user");
+            }
+            else{
+                document.getElementById("deafultIcon").remove();
+                document.getElementById('popoverImage').src=getImagePath();
+            }
+            
         };
 
         $(function() {
