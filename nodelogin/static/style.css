@@ -234,7 +234,7 @@ h3 {
     display: block;
     float: right;
     width: 48.5vw;
-    margin-top: 2vh;
+    
     margin-right: 1vw;
     border-radius: 15px;
 }
@@ -256,4 +256,16 @@ h3 {
 #popoverImage {
     border-radius: 50%;
     background-color: white;
+}
+
+#bigCalenderDiv {
+    height: 38vh;
+    width: 98vw;
+    margin-left: 1vw;
+}
+
+#meetingPoints{
+    height: 38vh;
+    width: 98vw;
+    margin-left: 1vw;
 }
