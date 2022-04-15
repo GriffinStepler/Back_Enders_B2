@@ -12,12 +12,11 @@
 </head>
 
 <body>
-    <div class="header">
-        <h1 class="header">Back_Enders_Back_At_It</h1>
-    </div>
+    <div class="loginHeader">
+        <h1 class="loginHeader">J.A.D.A</h1>
     
     <!-- class is login for easier styling -->
-    <div class="login">
+    <div class="login" id="createAccountDiv">
         <h1>Create an Account</h1>
         <form action="/createAuth" method="post">
 
@@ -35,9 +34,8 @@
 					<i class="fas fa-lock"></i>
 				</label>
             <input type="password" name="password" placeholder="Password" id="password" required>
-
             <input type="submit" value="Create Account">
-            <a class='login' href="/">Already have an Account? Login</a>
+            <a id="loginLink" href="/">Already have an Account? Login</a>
 
         </form>
         

@@ -138,6 +138,11 @@ h3 {
     box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
     margin: 100px auto;
     border-radius: 15px;
+    height: 370px;
+}
+
+#createAccountDiv {
+height: 440px;
 }
 
 .login h1 {
