@@ -186,6 +186,8 @@ app.get('/logout', function(request, response) {
         request.session.destroy((err) => {
             response.redirect('/') // will always fire after session is destroyed
           })
+    } else {
+        response.redirect('/')
     }
 })
 
