@@ -240,7 +240,7 @@ height: 440px;
 #todayDiv {
     height: 22.5vh;
     border-radius: 15px;
-    margin-bottom: 2.5vh;
+    margin-top: 2.5vh;
 }
 
 #currentMentorCaseDiv li,
@@ -278,14 +278,18 @@ height: 440px;
     background-color: white;
 }
 
-#bigCalenderDiv {
+#bigCalenderDiv, #meetingPoints{
     height: 38vh;
     width: 98vw;
+    margin-top: 1vh;
     margin-left: 1vw;
 }
 
-#meetingPoints{
-    height: 38vh;
-    width: 98vw;
+#currentMentorShips, #openMentorTable{
+    display: block;
+    height: 80vh;
+    width: 48.5vw;
+    margin-top: 2vh;
     margin-left: 1vw;
+    float: left;
 }
