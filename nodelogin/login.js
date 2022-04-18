@@ -273,6 +273,8 @@ app.get('/mentors', function(request, response) {
 
     makeConnection()
     let mentors = []
+    let mentees = []
+        //mentor query
     connection.query('select accounts.firstName, accounts.lastName from mentorship inner join accounts on mentorship.mentorID = accounts.id;', function(error, results) {
         if (error) {
             throw error
@@ -284,28 +286,44 @@ app.get('/mentors', function(request, response) {
             request.session.mentors = mentors
             console.log('Mentor list: ', mentors)
 
-            let accountInfo = {
-                username: request.session.username,
-                idNum: request.session.idNum,
-                firstName: request.session.firstName,
-                lastName: request.session.lastName,
-                department: request.session.department,
-                tierLevel: request.session.tierLevel,
-                imageRef: request.session.imageRef,
-                email: request.session.email,
-                linkedIn: request.session.linkedIn
-            }
+            //mentee query
+            connection.query('select accounts.firstName, accounts.lastName from mentorship inner join accounts on mentorship.menteeID = accounts.id;', function(error, results) {
+                if (error) {
+                    throw error
 
-            response.render('pages/mentors', {
-                header: request.session.username,
-                accountInfo: accountInfo,
-                calendar: request.session.calInfo,
-                mentors: mentors
+                } else {
+                    for (let i = 0; i < results.length; i++) {
+                        mentees.push(results[i])
+                    }
+                    request.session.mentees = mentees
+                    console.log('Mentee list: ', mentees)
+
+                    let accountInfo = {
+                        username: request.session.username,
+                        idNum: request.session.idNum,
+                        firstName: request.session.firstName,
+                        lastName: request.session.lastName,
+                        department: request.session.department,
+                        tierLevel: request.session.tierLevel,
+                        imageRef: request.session.imageRef,
+                        email: request.session.email,
+                        linkedIn: request.session.linkedIn
+                    }
+
+                    response.render('pages/mentors', {
+                        header: request.session.username,
+                        accountInfo: accountInfo,
+                        calendar: request.session.calInfo,
+                        mentors: mentors,
+                        mentees: mentees
+                    });
+                    console.log("response rendered")
+
+                    endConnection()
+                }
             });
-            console.log("response rendered")
         }
     })
-    endConnection()
 });
 
 // http://localhost:3000/chat
