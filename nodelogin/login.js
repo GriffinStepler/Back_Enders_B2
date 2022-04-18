@@ -274,6 +274,7 @@ app.get('/mentors', function(request, response) {
     makeConnection()
     let mentors = []
     let mentees = []
+    let availableMentors = []
         //mentor query
     connection.query('select accounts.firstName, accounts.lastName from mentorship inner join accounts on mentorship.mentorID = accounts.id;', function(error, results) {
         if (error) {
@@ -298,6 +299,12 @@ app.get('/mentors', function(request, response) {
                     request.session.mentees = mentees
                     console.log('Mentee list: ', mentees)
 
+
+
+
+
+
+
                     let accountInfo = {
                         username: request.session.username,
                         idNum: request.session.idNum,
@@ -315,7 +322,9 @@ app.get('/mentors', function(request, response) {
                         accountInfo: accountInfo,
                         calendar: request.session.calInfo,
                         mentors: mentors,
-                        mentees: mentees
+                        mentees: mentees,
+                        availableMentors: availableMentors
+
                     });
                     console.log("response rendered")
 
