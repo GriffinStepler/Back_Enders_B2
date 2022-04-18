@@ -230,6 +230,23 @@ app.post('/createAuth', function(request, response) {
     }
 });
 
+// http://localhost:3000/gethome
+app.get('/gethome', function(request, response) {
+
+    let accountInfo = {
+        username: request.session.username,
+        idNum: request.session.idNum,
+        firstName: request.session.firstName,
+        lastName: request.session.lastName,
+        department: request.session.department,
+        tierLevel: request.session.tierLevel,
+        imageRef: request.session.imageRef,
+        email: request.session.email,
+        linkedIn: request.session.linkedIn}
+
+    response.render('pages/home', {header: request.session.username, accountInfo: accountInfo, calendar: request.session.calInfo});
+});
+
 // http://localhost:3000/meetings
 app.get('/meetings', function(request, response) {
 
