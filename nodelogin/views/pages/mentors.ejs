@@ -4,6 +4,7 @@
 <head>
     <%- include('../partials/head'); %>
 </head>
+
 <body>
 
     <header id="headerBlock">
@@ -33,20 +34,21 @@
         <table>
             <tr>
                 <th>Mentor</th>
-                
+
                 <th>Mentee</th>
             </tr>
-            
-            <!-- <% for(let i = 0; i < mentors.length; i++) { %>
-                <tr><td><%= mentors[i] %></td>  <td>Mentee</td></tr>
-              <% } %> -->
 
-              <% mentors.forEach(function(mentor) { %>
+
+
+            <% mentors.forEach(function(mentor) { %>
                 <tr>
-                   <td> <%= mentor.firstName %> <%= mentor.lastName %> </td>
+                    <td>
+                        <%= mentor.firstName %>
+                            <%= mentor.lastName %>
+                    </td>
                 </tr>
                 <% }); %>
-        
+
         </table>
     </div>
 </body>

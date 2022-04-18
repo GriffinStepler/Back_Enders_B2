@@ -35,12 +35,11 @@ function makeConnection() {
     connection.connect((err, result) => {
 
         if (err) {
-            
-            if(err.code == 'ETIMEDOUT') {
+
+            if (err.code == 'ETIMEDOUT') {
                 console.log("ETIMEOUT handled in /home initial connection, recursively called makeConnection() to try connection again.")
                 makeConnection()
-            }
-            else {
+            } else {
                 throw new Error(err)
                 return
             }
@@ -49,18 +48,19 @@ function makeConnection() {
         }
     });
 }
+
 function endConnection() {
-connection.end(err => {
-    if(err){
-        console.log(`${err.toString()}`)
-    }
+    connection.end(err => {
+        if (err) {
+            console.log(`${err.toString()}`)
+        }
     })
 }
 
 
 // http://localhost:3000/
 app.get('/', function(request, response) {
-    
+
     // Render login template
     response.sendFile(path.join(__dirname + '/login.html'));
     // response.render('pages/login');
@@ -74,19 +74,18 @@ app.post('/home', function(request, response) {
     let username = request.body.username;
     let password = request.body.password;
 
-    function logUserIn(){
+    function logUserIn() {
         // Ensure the input fields exists and are not empty
         if (username && password) {
             // Execute SQL query that'll select the account from the database based on the specified username and password
             connection.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
                 // If there is an issue with the query, output the error
                 if (error) {
-                    if(error.code == 'ETIMEDOUT') {
+                    if (error.code == 'ETIMEDOUT') {
                         console.log("ETIMEOUT handled after first /home query, called logUserIn() as a recursive call.")
                         logUserIn()
                         return
-                    }
-                    else {
+                    } else {
                         throw new Error(error)
                         return
                     }
@@ -122,7 +121,7 @@ app.post('/home', function(request, response) {
                                 linkedIn: request.session.linkedIn
                             }
                             //renders page using ejs directly after auth in order to not send headers twice
-                        
+
                         // execute second query to retreive meetings from database
                         // calQuery separated for ease of use... holy shit this stupid thing is long
                         let calQuery = `select day, month, year, time 
@@ -152,13 +151,13 @@ app.post('/home', function(request, response) {
                                     calInfo.push(element);
                                 });
                                 request.session.calInfo = calInfo
-                                response.render('pages/home', {header: username, accountInfo: accountInfo, calendar: calInfo});
-                            } 
+                                response.render('pages/home', { header: username, accountInfo: accountInfo, calendar: calInfo });
+                            }
                             // if the user has no upcoming meetingsx
                             else {
-                                
+
                                 let calInfo = [];
-                                response.render('pages/home', {header: username, accountInfo: accountInfo, calendar: calInfo});
+                                response.render('pages/home', { header: username, accountInfo: accountInfo, calendar: calInfo });
                             }
                         });
 
@@ -169,7 +168,7 @@ app.post('/home', function(request, response) {
                         let calInfo = 'No upcoming meetings!';
                         response.send("Log in to view this page!");
                     }
-                        endConnection()
+                    endConnection()
                 } else {
                     response.send('Incorrect Username and/or Password! <br>  <p><a href="/">Login</a> <a href="/create">Create an Account</a></p>');
                 }
@@ -192,7 +191,7 @@ app.get('/logout', function(request, response) {
 
         request.session.destroy((err) => {
             response.redirect('/') // will always fire after session is destroyed
-          })
+        })
     } else {
         response.redirect('/')
     }
@@ -245,9 +244,10 @@ app.get('/gethome', function(request, response) {
         tierLevel: request.session.tierLevel,
         imageRef: request.session.imageRef,
         email: request.session.email,
-        linkedIn: request.session.linkedIn}
+        linkedIn: request.session.linkedIn
+    }
 
-    response.render('pages/home', {header: request.session.username, accountInfo: accountInfo, calendar: request.session.calInfo});
+    response.render('pages/home', { header: request.session.username, accountInfo: accountInfo, calendar: request.session.calInfo });
 });
 
 // http://localhost:3000/meetings
@@ -262,9 +262,10 @@ app.get('/meetings', function(request, response) {
         tierLevel: request.session.tierLevel,
         imageRef: request.session.imageRef,
         email: request.session.email,
-        linkedIn: request.session.linkedIn}
+        linkedIn: request.session.linkedIn
+    }
 
-    response.render('pages/meetings', {header: request.session.username, accountInfo: accountInfo, calendar: request.session.calInfo});
+    response.render('pages/meetings', { header: request.session.username, accountInfo: accountInfo, calendar: request.session.calInfo });
 });
 
 // http://localhost:3000/mentors
@@ -272,38 +273,39 @@ app.get('/mentors', function(request, response) {
 
     makeConnection()
     let mentors = []
-    let mentorHTML = ""
-    connection.query('select accounts.firstName, accounts.lastName from mentorship inner join accounts on mentorship.mentorID = accounts.id;'
-    , function(error, results) {
-            if (error) {
-                throw error
-            
-            } else {                    
-                    for (let i = 0; i < results.length; i++ ) {
-                        // let fullName = results[i].firstName + ' ' + results[i].lastName
-                        // mentorHTML += '<td>' + fullName + '</td>'
-                        // mentors.push(fullName)
-                        mentors.push(results[i])
-                    }
-                    console.log('Mentor list: ', mentors)
-                    console.log('Mentor HTML: ', mentorHTML)
-                }
-            })
-        endConnection()                           
+    connection.query('select accounts.firstName, accounts.lastName from mentorship inner join accounts on mentorship.mentorID = accounts.id;', function(error, results) {
+        if (error) {
+            throw error
 
-    let accountInfo = {
-        username: request.session.username,
-        idNum: request.session.idNum,
-        firstName: request.session.firstName,
-        lastName: request.session.lastName,
-        department: request.session.department,
-        tierLevel: request.session.tierLevel,
-        imageRef: request.session.imageRef,
-        email: request.session.email,
-        linkedIn: request.session.linkedIn}
+        } else {
+            for (let i = 0; i < results.length; i++) {
+                mentors.push(results[i])
+            }
+            request.session.mentors = mentors
+            console.log('Mentor list: ', mentors)
 
-    response.render('pages/mentors', {header: request.session.username, accountInfo: accountInfo, calendar: request.session.calInfo,
-         mentors: mentors, mentorHTML: mentorHTML});
+            let accountInfo = {
+                username: request.session.username,
+                idNum: request.session.idNum,
+                firstName: request.session.firstName,
+                lastName: request.session.lastName,
+                department: request.session.department,
+                tierLevel: request.session.tierLevel,
+                imageRef: request.session.imageRef,
+                email: request.session.email,
+                linkedIn: request.session.linkedIn
+            }
+
+            response.render('pages/mentors', {
+                header: request.session.username,
+                accountInfo: accountInfo,
+                calendar: request.session.calInfo,
+                mentors: mentors
+            });
+            console.log("response rendered")
+        }
+    })
+    endConnection()
 });
 
 // http://localhost:3000/chat
@@ -318,9 +320,10 @@ app.get('/chat', function(request, response) {
         tierLevel: request.session.tierLevel,
         imageRef: request.session.imageRef,
         email: request.session.email,
-        linkedIn: request.session.linkedIn}
+        linkedIn: request.session.linkedIn
+    }
 
-    response.render('pages/chat', {header: request.session.username, accountInfo: accountInfo, calendar: request.session.calInfo});
+    response.render('pages/chat', { header: request.session.username, accountInfo: accountInfo, calendar: request.session.calInfo });
 });
 
 let server = app.listen(3000);
