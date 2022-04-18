@@ -17,6 +17,8 @@ client.on("messageCreate", msg => {
   console.log(`${fname} ${lname}`);
   console.log(`${nick}: ${msg.content}`);
   msg.embeds.forEach(obj => console.log(obj));
+  // splice from embedded the name of the user who sent the request, then tell the user the bot added the
+  // meeting to the database
 })
 
 client.on('interactionCreate', async interaction => {
