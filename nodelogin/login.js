@@ -28,6 +28,36 @@ app.use(express.static(path.join(__dirname, 'static')));
 // app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 
+
+//create new connection
+function makeConnection() {
+    connection = mysql.createConnection(connectionString)
+    connection.connect((err, result) => {
+
+        if (err) {
+            
+            if(err.code == 'ETIMEDOUT') {
+                console.log("ETIMEOUT handled in /home initial connection, recursively called makeConnection() to try connection again.")
+                makeConnection()
+            }
+            else {
+                throw new Error(err)
+                return
+            }
+        } else {
+            console.log('Successfully connecting with the database')
+        }
+    });
+}
+function endConnection() {
+connection.end(err => {
+    if(err){
+        console.log(`${err.toString()}`)
+    }
+    })
+}
+
+
 // http://localhost:3000/
 app.get('/', function(request, response) {
     
@@ -39,26 +69,7 @@ app.get('/', function(request, response) {
 // http://localhost:3000/home
 app.post('/home', function(request, response) {
 
-    //create new connection
-    function makeConnection() {
-        connection = mysql.createConnection(connectionString)
-        connection.connect((err, result) => {
 
-            if (err) {
-                
-                if(err.code == 'ETIMEDOUT') {
-                    console.log("ETIMEOUT handled in /home initial connection, recursively called makeConnection() to try connection again.")
-                    makeConnection()
-                }
-                else {
-                    throw new Error(err)
-                    return
-                }
-            } else {
-                console.log('Successfully connecting with the database')
-            }
-        });
-    }
     // Capture the input fields
     let username = request.body.username;
     let password = request.body.password;
@@ -158,11 +169,7 @@ app.post('/home', function(request, response) {
                         let calInfo = 'No upcoming meetings!';
                         response.send("Log in to view this page!");
                     }
-                    connection.end(err => {
-                        if(err){
-                            console.log(`${err.toString()}`)
-                        }
-                        })
+                        endConnection()
                 } else {
                     response.send('Incorrect Username and/or Password! <br>  <p><a href="/">Login</a> <a href="/create">Create an Account</a></p>');
                 }
@@ -218,11 +225,7 @@ app.post('/createAuth', function(request, response) {
                     // setTimeout(response.redirect('/'), 3000)
             }
         })
-        connection.end(err => {
-            if(err){
-                console.log(`${err.toString()}`)
-            }
-            })
+        endConnection()
 
     } else {
         response.send('Please enter all required fields!');
@@ -267,6 +270,27 @@ app.get('/meetings', function(request, response) {
 // http://localhost:3000/mentors
 app.get('/mentors', function(request, response) {
 
+    makeConnection()
+    let mentors = []
+    let mentorHTML = ""
+    connection.query('select accounts.firstName, accounts.lastName from mentorship inner join accounts on mentorship.mentorID = accounts.id;'
+    , function(error, results) {
+            if (error) {
+                throw error
+            
+            } else {                    
+                    for (let i = 0; i < results.length; i++ ) {
+                        // let fullName = results[i].firstName + ' ' + results[i].lastName
+                        // mentorHTML += '<td>' + fullName + '</td>'
+                        // mentors.push(fullName)
+                        mentors.push(results[i])
+                    }
+                    console.log('Mentor list: ', mentors)
+                    console.log('Mentor HTML: ', mentorHTML)
+                }
+            })
+        endConnection()                           
+
     let accountInfo = {
         username: request.session.username,
         idNum: request.session.idNum,
@@ -278,7 +302,8 @@ app.get('/mentors', function(request, response) {
         email: request.session.email,
         linkedIn: request.session.linkedIn}
 
-    response.render('pages/mentors', {header: request.session.username, accountInfo: accountInfo, calendar: request.session.calInfo});
+    response.render('pages/mentors', {header: request.session.username, accountInfo: accountInfo, calendar: request.session.calInfo,
+         mentors: mentors, mentorHTML: mentorHTML});
 });
 
 // http://localhost:3000/chat
