@@ -293,3 +293,10 @@ height: 440px;
     margin-left: 1vw;
     float: left;
 }
+table{
+    width:100%;
+    border: 1px solid black;
+}
+tr{
+    text-align: left;
+}

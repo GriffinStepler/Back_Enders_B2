@@ -274,6 +274,7 @@ app.get('/mentors', function(request, response) {
     makeConnection()
     let mentors = []
     let mentees = []
+    let availableMentors = []
         //mentor query
     connection.query('select accounts.firstName, accounts.lastName from mentorship inner join accounts on mentorship.mentorID = accounts.id;', function(error, results) {
         if (error) {
@@ -298,6 +299,19 @@ app.get('/mentors', function(request, response) {
                     request.session.mentees = mentees
                     console.log('Mentee list: ', mentees)
 
+                    //availableMentors query
+                    connection.query('select accounts.firstName, accounts.lastName, accounts.tierLevel from accounts where accounts.department = \'accounting\' and accounts.tierLevel > 2 and accounts.mentorshipID2 is null ORDER BY accounts.tierLevel ASC;', function(error, results) {
+                        if (error) {
+                            throw error
+
+                        } else {
+                            for (let i = 0; i < results.length; i++) {
+                                availableMentors.push(results[i])
+                            }
+                            request.session.mentors = availableMentors
+                            console.log('Available Mentors list: ', availableMentors)
+                    
+
                     let accountInfo = {
                         username: request.session.username,
                         idNum: request.session.idNum,
@@ -315,11 +329,13 @@ app.get('/mentors', function(request, response) {
                         accountInfo: accountInfo,
                         calendar: request.session.calInfo,
                         mentors: mentors,
-                        mentees: mentees
+                        mentees: mentees,
+                        availableMentors: availableMentors
                     });
                     console.log("response rendered")
 
                     endConnection()
+                }});    
                 }
             });
         }
