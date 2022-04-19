@@ -133,13 +133,13 @@ app.post('/home', function(request, response) {
                                 for (let i = 0; i < results.length; i++) {
                                     currentlyMentoring.push(results[i])
                                 }
-                                console.log(currentlyMentoring)
                                 request.session.currentlyMentoring = currentlyMentoring
+                                console.log(currentlyMentoring)
                                 response.render('pages/home', {
                                     header: request.session.username, 
                                     accountInfo: accountInfo, 
                                     calendar: request.session.calInfo, 
-                                    currentlyMentoring: currentlyMentoring });
+                                    currentlyMentoring: currentlyMentoring});
                             }
                         });
 
