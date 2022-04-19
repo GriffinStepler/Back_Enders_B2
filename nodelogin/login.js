@@ -374,13 +374,14 @@ app.post('/addnewmentor', function(request, response) {
         email: request.session.email,
         linkedIn: request.session.linkedIn
     }
+function addNewMentor(){
 
     makeConnection()
     connection.query('insert into mentorship ( mentorID, menteeID) values (?, ?);', [mentorID, accountInfo.idNum], function(error, results) {
         if (error) {
             if (error.code == 'ETIMEDOUT') {
-                console.log("ETIMEOUT handled after first /home query, called logUserIn() as a recursive call.")
-                logUserIn()
+                console.log("ETIMEOUT handled after first /home query, called addNewMentor() as a recursive call.")
+                addNewMentor()
                 return
             } else {
                 throw new Error(error)
@@ -400,7 +401,8 @@ app.post('/addnewmentor', function(request, response) {
         mentors: request.session.mentors,
         mentees: request.session.mentees
     });
-
+}
+addNewMentor()
 });
 
 // http://localhost:3000/getmentors
