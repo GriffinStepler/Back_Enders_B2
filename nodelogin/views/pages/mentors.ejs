@@ -28,11 +28,11 @@
                 <th colspan="2">Tier Level</th>
 
             </tr>
-            <form action="/addnewmentor" method="get">
+            <form action="/addnewmentor" method="post">
                 <% for (var i = 0; i < availableMentors.length; i++) { %>
                     <tr>
                         <td>
-                            <input type="radio" name="mentorName" value="<%=accountInfo.idNum %>">
+                            <input type="radio" id="mentorID" name="mentorID" value="<%=availableMentors[i].id %>">
                         </td>
                         <td>
                             <%= availableMentors[i].firstName %>
