@@ -274,7 +274,7 @@ app.get('/meetings', function(request, response) {
 // http://localhost:3000/mentors
 app.get('/mentors', function(request, response) {
 
-
+function mentorConnection() {
     makeConnection()
     let mentors = []
     let mentees = []
@@ -282,7 +282,14 @@ app.get('/mentors', function(request, response) {
         //mentor query
     connection.query('select accounts.firstName, accounts.lastName from mentorship inner join accounts on mentorship.mentorID = accounts.id ORDER BY mentorship.mentorshipID ASC;', function(error, results) {
         if (error) {
-            throw error
+            if (error.code == 'ETIMEDOUT') {
+                console.log("ETIMEOUT handled after first /home query, called logUserIn() as a recursive call.")
+                mentorConnection()
+                return
+            } else {
+                throw new Error(error)
+                return
+            }
 
         } else {
             for (let i = 0; i < results.length; i++) {
@@ -346,6 +353,9 @@ app.get('/mentors', function(request, response) {
             });
         }
     })
+}
+mentorConnection()
+
 });
 
 // http://localhost:3000/addnewmentor
@@ -368,8 +378,14 @@ app.post('/addnewmentor', function(request, response) {
     makeConnection()
     connection.query('insert into mentorship ( mentorID, menteeID) values (?, ?);', [mentorID, accountInfo.idNum], function(error, results) {
         if (error) {
-            throw error
-
+            if (error.code == 'ETIMEDOUT') {
+                console.log("ETIMEOUT handled after first /home query, called logUserIn() as a recursive call.")
+                logUserIn()
+                return
+            } else {
+                throw new Error(error)
+                return
+            }
         } else {
             console.log("Successfully added new mentor to mentorship table")
         }
