@@ -73,6 +73,7 @@ app.post('/home', function(request, response) {
     // Capture the input fields
     let username = request.body.username;
     let password = request.body.password;
+    let currentlyMentoring = [];
 
     function logUserIn() {
         // Ensure the input fields exists and are not empty
@@ -121,6 +122,18 @@ app.post('/home', function(request, response) {
                                 linkedIn: request.session.linkedIn
                             }
                             //renders page using ejs directly after auth in order to not send headers twice
+
+                        //currentlyMentoring query
+                        connection.query('select accounts.firstName, accounts.lastName from accounts where accounts.id in(select menteeID from mentorship where mentorshipID = 11);', function(error, results) {
+                            if (error) {
+                                throw error
+                            } else {
+                                for (let i = 0; i < results.length; i++) {
+                                    currentlyMentoring.push(results[i])
+                                }
+                                request.session.currentlyMentoring = currentlyMentoring
+                                response.render('pages/home', {currentlyMentoring: currentlyMentoring});
+                            }});
 
                         // execute second query to retreive meetings from database
                         // calQuery separated for ease of use... holy shit this stupid thing is long
