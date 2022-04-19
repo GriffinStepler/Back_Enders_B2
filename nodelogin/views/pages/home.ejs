@@ -7,15 +7,16 @@
 
 <script>
     // gets date and sets as a variable and heading for todayDiv
-    function getDate(dateVar) {        
+    function getDate(dateVar) {
         var today = new Date();
-        var date = (today.getMonth()+1) + '/' + today.getDate() + '/' + today.getFullYear();
+        var date = (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear();
         console.log("Date: ", date)
         dateString = "Today's Date: " + date
         document.getElementById(dateVar).innerHTML = dateString
         return date
-}
+    }
 </script>
+
 <body>
 
     <header id="headerBlock">
@@ -89,6 +90,7 @@
             <% for (var i = 0; i < availableMentors.length; i++) { %>
             <%= currentlyMentoring.firstName %>
             <%= currentlyMentoring.firstName %>
+            <% }; %>
         </div>
 
     </span>

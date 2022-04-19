@@ -105,6 +105,8 @@ app.post('/home', function(request, response) {
                     request.session.imageRef = results[0].imageRef
                     request.session.email = results[0].email
                     request.session.linkedIn = results[0].linkedIn
+                    request.session.mentorshipID1 = results[0].mentorshipID1
+                    request.session.mentorshipID2 = results[0].mentorshipID2
                         // Redirect to home page
                         // response.redirect('/home');
                     if (request.session.loggedin) {
@@ -124,16 +126,18 @@ app.post('/home', function(request, response) {
                             //renders page using ejs directly after auth in order to not send headers twice
 
                         //currentlyMentoring query
-                        connection.query('select accounts.firstName, accounts.lastName from accounts where accounts.id in(select menteeID from mentorship where mentorshipID = 11);', function(error, results) {
+                        connection.query('select accounts.firstName, accounts.lastName from accounts where ? in(select menteeID from mentorship where mentorshipID = ?);', [accountInfo.idNum, accountInfo.mentorshipID1], function(error, results) {
                             if (error) {
                                 throw error
                             } else {
                                 for (let i = 0; i < results.length; i++) {
                                     currentlyMentoring.push(results[i])
                                 }
+                                console.log(currentlyMentoring)
                                 request.session.currentlyMentoring = currentlyMentoring
-                                response.render('pages/home', {currentlyMentoring: currentlyMentoring});
-                            }});
+                                response.render('pages/home', { currentlyMentoring: currentlyMentoring });
+                            }
+                        });
 
                         // execute second query to retreive meetings from database
                         // calQuery separated for ease of use... holy shit this stupid thing is long
