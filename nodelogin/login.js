@@ -311,7 +311,14 @@ app.get('/mentors', function(request, response) {
         //mentor query
     connection.query('select accounts.firstName, accounts.lastName from mentorship inner join accounts on mentorship.mentorID = accounts.id ORDER BY mentorship.mentorshipID ASC;', function(error, results) {
         if (error) {
-            throw error
+            if (error.code == 'ETIMEDOUT') {
+                console.log("ETIMEOUT handled after first /home query, called logUserIn() as a recursive call.")
+                logUserIn()
+                return
+            } else {
+                throw new Error(error)
+                return
+            }
 
         } else {
             for (let i = 0; i < results.length; i++) {
