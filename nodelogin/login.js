@@ -124,9 +124,9 @@ app.post('/home', function(request, response) {
                                 linkedIn: request.session.linkedIn
                             }
                             //renders page using ejs directly after auth in order to not send headers twice
-
+                            // select accounts.firstName, accounts.lastName from accounts where ? in(select menteeID from mentorship where mentorshipID = ?);', [accountInfo.idNum, accountInfo.mentorshipID1]
                         //currentlyMentoring query
-                        connection.query('select accounts.firstName, accounts.lastName from accounts where ? in(select menteeID from mentorship where mentorshipID = ?);', [accountInfo.idNum, accountInfo.mentorshipID1], function(error, results) {
+                        connection.query('select firstName, lastName from accounts where accounts.id in(select menteeID from mentorship where mentorshipID = 11);', function(error, results) {
                             if (error) {
                                 throw error
                             } else {
