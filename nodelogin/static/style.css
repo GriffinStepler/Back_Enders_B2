@@ -54,6 +54,7 @@ h3 {
     z-index: 99;
     border-radius: 15px;
 }
+
 .loginHeader h1 {
     margin-top: 0.7vh;
 }
@@ -146,7 +147,7 @@ h3 {
 }
 
 #createAccountDiv {
-height: 440px;
+    height: 440px;
 }
 
 .login h1 {
@@ -249,7 +250,7 @@ height: 440px;
 
 #currentMentorCaseDiv li,
 #calenderDiv li,
-#todayDiv li{
+#todayDiv li {
     text-decoration: none;
     list-style-type: none;
 }
@@ -282,25 +283,42 @@ height: 440px;
     background-color: white;
 }
 
-#bigCalenderDiv, #meetingPoints{
+#bigCalenderDiv,
+#meetingPoints {
     height: 38vh;
     width: 98vw;
     margin-top: 1vh;
     margin-left: 1vw;
 }
 
-#currentMentorShips, #openMentorTable{
+#currentMentorShips,
+#openMentorTable {
     display: block;
-    height: 80vh;
-    width: 48.5vw;
+    height: 79vh;
+    width: 48.4vw;
     margin-top: 2vh;
     margin-left: 1vw;
     float: left;
 }
-table{
-    width:100%;
-    border: 1px solid black;
+
+table {
+    width: 95%;
+    margin-left: 10%;
+    text-align: center;
 }
-tr{
+
+#mentorshipPairsTable {
+    margin-left: 25%;
+}
+
+tr {
     text-align: left;
+}
+
+#newMentorButton {
+    background-color: #3274d6;
+    border-radius: 15px;
+    box-shadow: none;
+    border: none;
+    outline: none;
 }
