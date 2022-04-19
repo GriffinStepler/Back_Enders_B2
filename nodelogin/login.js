@@ -116,33 +116,41 @@ app.post('/home', function(request, response) {
                         console.log('successful login by', request.session.username)
 
                         let accountInfo = {
-                                username: username,
-                                idNum: request.session.idNum,
-                                firstName: request.session.firstName,
-                                lastName: request.session.lastName,
-                                department: request.session.department,
-                                tierLevel: request.session.tierLevel,
-                                imageRef: request.session.imageRef,
-                                email: request.session.email,
-                                linkedIn: request.session.linkedIn
-                            }
+                            username: username,
+                            idNum: request.session.idNum,
+                            firstName: request.session.firstName,
+                            lastName: request.session.lastName,
+                            department: request.session.department,
+                            tierLevel: request.session.tierLevel,
+                            imageRef: request.session.imageRef,
+                            email: request.session.email,
+                            linkedIn: request.session.linkedIn,
+                            mentorshipID1: request.session.mentorshipID1
+                        }
+                        console.log(accountInfo.mentorshipID1)
                             //renders page using ejs directly after auth in order to not send headers twice
-
-                        //currentlyMentoring query
-                        connection.query('select accounts.firstName, accounts.lastName from accounts where ? in(select menteeID from mentorship where mentorshipID = ?);', [accountInfo.idNum, accountInfo.mentorshipID1], function(error, results) {
+                            // select accounts.firstName, accounts.lastName from accounts where ? in(select menteeID from mentorship where mentorshipID = ?);', [accountInfo.idNum, accountInfo.mentorshipID1]
+                            //currentlyMentoring query
+                        connection.query('select accounts.firstName, accounts.lastName from accounts where accounts.id in(select menteeID from mentorship where mentorshipID1 = ?);', [accountInfo.mentorshipID1], function(error, results) {
                             if (error) {
                                 throw error
                             } else {
                                 for (let i = 0; i < results.length; i++) {
                                     currentlyMentoring.push(results[i])
                                 }
+
+                                console.log('Currently Mentoring: ', currentlyMentoring)
                                 request.session.currentlyMentoring = currentlyMentoring
-                                console.log(currentlyMentoring)
-                                response.render('pages/home', {
-                                    header: request.session.username, 
-                                    accountInfo: accountInfo, 
-                                    calendar: request.session.calInfo, 
-                                    currentlyMentoring: currentlyMentoring});
+
+
+//                                 request.session.currentlyMentoring = currentlyMentoring
+//                                 console.log(currentlyMentoring)
+//                                 response.render('pages/home', {
+//                                     header: request.session.username, 
+//                                     accountInfo: accountInfo, 
+//                                     calendar: request.session.calInfo, 
+//                                     currentlyMentoring: currentlyMentoring});
+
                             }
                         });
 
@@ -175,13 +183,13 @@ app.post('/home', function(request, response) {
                                     calInfo.push(element);
                                 });
                                 request.session.calInfo = calInfo
-                                response.render('pages/home', { header: username, accountInfo: accountInfo, calendar: calInfo });
+                                response.render('pages/home', { header: username, accountInfo: accountInfo, calendar: calInfo, currentlyMentoring: request.session.currentlyMentoring });
                             }
                             // if the user has no upcoming meetingsx
                             else {
 
                                 let calInfo = [];
-                                response.render('pages/home', { header: username, accountInfo: accountInfo, calendar: calInfo });
+                                response.render('pages/home', { header: username, accountInfo: accountInfo, calendar: calInfo, currentlyMentoring: request.session.currentlyMentoring });
                             }
                         });
 
@@ -271,7 +279,7 @@ app.get('/gethome', function(request, response) {
         linkedIn: request.session.linkedIn
     }
 
-    response.render('pages/home', { header: request.session.username, accountInfo: accountInfo, calendar: request.session.calInfo });
+    response.render('pages/home', { header: request.session.username, accountInfo: accountInfo, calendar: request.session.calInfo, currentlyMentoring: request.session.currentlyMentoring });
 });
 
 // http://localhost:3000/meetings
@@ -348,7 +356,8 @@ app.get('/mentors', function(request, response) {
                                 availableMentors.push(results[i])
                             }
                             request.session.availableMentors = availableMentors
-                                // console.log('Available Mentors list: ', availableMentors)
+
+                            console.log('Available Mentors list: ', availableMentors)
 
                             response.render('pages/mentors', {
                                 header: request.session.username,
