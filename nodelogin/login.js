@@ -135,7 +135,11 @@ app.post('/home', function(request, response) {
                                 }
                                 console.log(currentlyMentoring)
                                 request.session.currentlyMentoring = currentlyMentoring
-                                response.render('pages/home', { currentlyMentoring: currentlyMentoring });
+                                response.render('pages/home', {
+                                    header: request.session.username, 
+                                    accountInfo: accountInfo, 
+                                    calendar: request.session.calInfo, 
+                                    currentlyMentoring: currentlyMentoring });
                             }
                         });
 
