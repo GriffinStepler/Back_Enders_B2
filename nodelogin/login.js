@@ -299,17 +299,7 @@ app.get('/mentors', function(request, response) {
                     request.session.mentees = mentees
                     console.log('Mentee list: ', mentees)
 
-                    //availableMentors query
-                    connection.query('select accounts.firstName, accounts.lastName, accounts.tierLevel from accounts where accounts.department = \'accounting\' and accounts.tierLevel > 2 and accounts.mentorshipID2 is null ORDER BY accounts.tierLevel ASC;', function(error, results) {
-                        if (error) {
-                            throw error
-
-                        } else {
-                            for (let i = 0; i < results.length; i++) {
-                                availableMentors.push(results[i])
-                            }
-                            request.session.mentors = availableMentors
-                            console.log('Available Mentors list: ', availableMentors)
+                    
                     
 
                     let accountInfo = {
@@ -323,6 +313,17 @@ app.get('/mentors', function(request, response) {
                         email: request.session.email,
                         linkedIn: request.session.linkedIn
                     }
+                    //availableMentors query
+                    connection.query('select accounts.firstName, accounts.lastName, accounts.tierLevel from accounts where accounts.department = ? and accounts.tierLevel > 2 and accounts.mentorshipID2 is null ORDER BY accounts.tierLevel ASC;', [accountInfo.department], function(error, results) {
+                        if (error) {
+                            throw error
+
+                        } else {
+                            for (let i = 0; i < results.length; i++) {
+                                availableMentors.push(results[i])
+                            }
+                            request.session.mentors = availableMentors
+                            console.log('Available Mentors list: ', availableMentors)
 
                     response.render('pages/mentors', {
                         header: request.session.username,
