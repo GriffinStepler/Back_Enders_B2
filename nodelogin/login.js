@@ -312,22 +312,22 @@ app.get('/mentors', function(request, response) {
                     request.session.mentees = mentees
                     console.log('Mentee list: ', mentees)
 
-                    
-                    
+
+
 
                     let accountInfo = {
-                        username: request.session.username,
-                        idNum: request.session.idNum,
-                        firstName: request.session.firstName,
-                        lastName: request.session.lastName,
-                        department: request.session.department,
-                        tierLevel: request.session.tierLevel,
-                        imageRef: request.session.imageRef,
-                        email: request.session.email,
-                        linkedIn: request.session.linkedIn
-                    }
-                    //availableMentors query
-                    connection.query('select accounts.firstName, accounts.lastName, accounts.tierLevel from accounts where accounts.department = ? and accounts.tierLevel > 2 and accounts.mentorshipID2 is null ORDER BY accounts.tierLevel ASC;', [accountInfo.department], function(error, results) {
+                            username: request.session.username,
+                            idNum: request.session.idNum,
+                            firstName: request.session.firstName,
+                            lastName: request.session.lastName,
+                            department: request.session.department,
+                            tierLevel: request.session.tierLevel,
+                            imageRef: request.session.imageRef,
+                            email: request.session.email,
+                            linkedIn: request.session.linkedIn
+                        }
+                        //availableMentors query
+                    connection.query('select accounts.firstName, accounts.lastName, accounts.tierLevel, accounts.linkedIn from accounts where accounts.department = ? and accounts.tierLevel > ? and accounts.mentorshipID2 is null ORDER BY accounts.tierLevel ASC;', [accountInfo.department, accountInfo.tierLevel], function(error, results) {
                         if (error) {
                             throw error
 
@@ -338,18 +338,19 @@ app.get('/mentors', function(request, response) {
                             request.session.mentors = availableMentors
                             console.log('Available Mentors list: ', availableMentors)
 
-                    response.render('pages/mentors', {
-                        header: request.session.username,
-                        accountInfo: accountInfo,
-                        calendar: request.session.calInfo,
-                        mentors: mentors,
-                        mentees: mentees,
-                        availableMentors: availableMentors
-                    });
-                    console.log("response rendered")
+                            response.render('pages/mentors', {
+                                header: request.session.username,
+                                accountInfo: accountInfo,
+                                calendar: request.session.calInfo,
+                                mentors: mentors,
+                                mentees: mentees,
+                                availableMentors: availableMentors
+                            });
+                            console.log("response rendered")
 
-                    endConnection()
-                }});    
+                            endConnection()
+                        }
+                    });
                 }
             });
         }

@@ -26,48 +26,58 @@
             <tr>
                 <th colspan="2">Mentor Name</th>
                 <th colspan="2">Tier Level</th>
-            </tr>
 
-            <% for (var i = 0; i < availableMentors.length; i++) { %>
-                <tr>
-                    <td>
-                        <%= availableMentors[i].firstName %>
-                    </td>
-                    <td>
-                        <%= availableMentors[i].lastName %>
-                    </td>
-                    <td>
-                        <%= availableMentors[i].tierLevel %>
-                    </td>
-                </tr>
-                <% } %>
+            </tr>
+            <form action="/addnewmentor" method="get">
+                <% for (var i = 0; i < availableMentors.length; i++) { %>
+                    <tr>
+                        <td>
+                            <input type="radio" name="mentorName" value="<%=accountInfo.idNum %>">
+                        </td>
+                        <td>
+                            <%= availableMentors[i].firstName %>
+                                <%= availableMentors[i].lastName %>
+                        </td>
+                        <td>
+                            <%= availableMentors[i].tierLevel %>
+                        </td>
+                        <td>
+                            <a href='<%= availableMentors[i].linkedIn %>'>LinkedIn</a>
+                        </td>
+                    </tr>
+                    <% } %>
+
 
         </table>
+        <br>
+
+        <input type="submit" value="  Add My New Mentor!  " id="newMentorButton">
+
+        </form>
+
+
+
     </div>
 
     <div class="content" id="currentMentorShips">
         <h3 id="currentMentorShipsHeader">Mentor/Mentee Pairs</h3>
-        <table>
+        <table id="mentorshipPairsTable">
             <tr>
-                <th colspan="2">Mentor</th>
-
-                <th colspan="2">Mentee</th>
+                <th>Mentor</th>
+                <th>Mentee</th>
             </tr>
+            <br>
 
 
             <% for (var i = 0; i < mentors.length; i++) { %>
                 <tr>
                     <td>
                         <%= mentors[i].firstName %>
-                    </td>
-                    <td>
-                        <%= mentors[i].lastName %>
+                            <%= mentors[i].lastName %>
                     </td>
                     <td>
                         <%= mentees[i].firstName %>
-                    </td>
-                    <td>
-                        <%= mentees[i].lastName %>
+                            <%= mentees[i].lastName %>
                     </td>
                 </tr>
                 <% } %>
