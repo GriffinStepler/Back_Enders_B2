@@ -90,7 +90,7 @@ h3 {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 2vh;
 }
 
 
@@ -111,7 +111,7 @@ h3 {
 }
 
 #welcomeBack p {
-    font-size: 30px;
+    font-size: 3vh;
     font-weight: bold
 }
 
@@ -130,6 +130,10 @@ h3 {
 
 .content h3 {
     padding-top: 1vh;
+}
+
+.content p {
+    font-size: 3vh;
 }
 
 .login {
