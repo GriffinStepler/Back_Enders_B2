@@ -9,11 +9,11 @@ const { response } = require('express');
 const req = require('express/lib/request');
 
 let connectionString = {
-    host: "107.180.1.16",
-    port: "3306",
-    database: "sprog20222",
-    user: "sprog20222",
-    password: "sprog20222",
+    host: "",
+    port: "",
+    database: "",
+    user: "",
+    password: "",
 };
 
 let connection = mysql.createConnection(connectionString)

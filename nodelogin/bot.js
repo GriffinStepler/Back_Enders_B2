@@ -52,4 +52,4 @@ client.on('interactionCreate', async interaction => {
   }
 });
 
-client.login('OTYyMTA1NzE3MjMyMzg2MTM4.YlCsxg.3r2KcWiaWqqfGcI_KNtWMWcTpzw'); // don't share this token
+client.login(''); // include login token
