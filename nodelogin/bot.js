@@ -1,6 +1,3 @@
-// this is the code for the bot 
-// this is the token lol OTYyMTA1NzE3MjMyMzg2MTM4.YlCsxg.3r2KcWiaWqqfGcI_KNtWMWcTpzw
-
 const {Client, Intents} = require("discord.js");
 const client = new Client( { intents: ['GUILDS', 'DIRECT_MESSAGES', 'GUILD_MESSAGES'], partials: ['MESSAGE', 'CHANNEL'] });
 // const mysql = require('mysql');  // require mysql
